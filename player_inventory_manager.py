@@ -23,13 +23,22 @@ def add_item(inventory):
         inventory.append(item.lower())
     
 
-#test
-inventory = ["shield"]
+#test add_item():
+"""inventory = ["shield"]
 add_item(inventory)
+print(inventory)"""
 
-print(inventory)
+
 
 # func remove_item ()
+def remove_item(inventory: list) -> None:
+    item_to_remove = input("Enter item to remove: ")
+    inventory.remove(item_to_remove)
+
+# test remove_item():
+lst1 = ["1", "2"]
+remove_item(lst1)
+print(lst1)
 
 # func show_inventory()
 
