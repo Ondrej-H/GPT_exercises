@@ -10,6 +10,7 @@ for i in range(len(text) - 3 + 1):
 
 # ---------------------------------------------------
 # obecná verze:
+pattern = input()
 window_size = len(pattern)
 
 for i in range(len(text) - window_size + 1):
