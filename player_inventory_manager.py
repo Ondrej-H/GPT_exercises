@@ -12,7 +12,7 @@
 Choose:
 """
 
-# func add_item()
+# 1 func add_item()
 def add_item(inventory: list) -> None:
     item = input("Enter item: ")
     if item == "":
@@ -23,14 +23,14 @@ def add_item(inventory: list) -> None:
         inventory.append(item.lower())
     
 
-#test add_item():
+#test add_item()
 """inventory = ["shield"]
 add_item(inventory)
 print(inventory)"""
 
 
 
-# func remove_item ()
+# 2 func remove_item()
 def remove_item(inventory: list) -> None:
     item_to_remove = input("Enter item to remove: ")
     if item_to_remove not in inventory:
@@ -39,14 +39,14 @@ def remove_item(inventory: list) -> None:
         inventory.remove(item_to_remove)
 
 
-# test remove_item():
+# test remove_item()
 """lst1 = ["1", "2"]
 remove_item(lst1)
 print(lst1)"""
 
 
 
-# func show_inventory()
+# 3 func show_inventory()
 def show_inventory(inventory: list) -> None:
     if not inventory:
         print("Inventory is empty!")
@@ -60,14 +60,14 @@ def show_inventory(inventory: list) -> None:
         print(f"Every second item: {inventory[::2]}")
 
 
-# test show_inventory():
+# test show_inventory()
 """lst2 = ["1", "2", "3", "4", "5"]
 lst3 = []
 show_inventory(lst3)"""
 
 
 
-# func search_item()
+# 4 func search_item()
 def search_item(inventory: list) -> list:
     searched_text = input("Search: ")
     searched_items = []
@@ -77,14 +77,78 @@ def search_item(inventory: list) -> list:
     
     return searched_items
 
-# test search_item():
+
+# test search_item()
 """lst4 = ["iron sword", "health potion", "magic sword"]
 print(search_item(lst4))"""
 
 
 
+# 5 func show_statistics() and its functions
+
+# func find_longest()
+def find_longest(inventory):
+    longest = inventory[0]
+
+    for item in inventory:
+        if len(item) > len(longest):
+            longest = item
+    
+    return longest
 
 
-# func show_statistics()
+"""# test find_longest():
+lst = ["iron sword", "health potion", "magic sword"]
+print(find_longest(lst))"""
+
+
+# func find_shortest()
+def find_shortest(inventory):
+    shortest = inventory[0]
+
+    for item in inventory:
+        if len(item) < len(shortest):
+            shortest = item
+
+    return shortest
+
+
+# func find_average_lenght()
+def find_average_lenght(inventory: list) -> float:
+    total_lenght = 0
+
+    for item in inventory:
+        total_lenght += len(item)
+    
+    average_lenght = total_lenght / len(inventory)
+
+    return average_lenght
+        
+
+# func find_items_starting_with_vowel(inventory)
+def find_items_starting_with_vowel(inventory) -> list:
+    vowels = "aeiou"
+    vowels_starting_items = []
+    
+    for item in inventory:
+        if item[0] in vowels:
+            vowels_starting_items.append(item)
+    
+    return vowels_starting_items
+
+
+# func find_items_containing_spaces(inventory)
+def find_items_containing_spaces(inventory)
+
+# func show_statistics() itself
+def show_statistics(inventory):
+    print(f"Longest item: {find_longest(inventory)}")
+    print(f"Shortest item: {find_shortest(inventory)}")
+    print(f"Average item lenght: {find_average_lenght(inventory)}")
+    print(f"Items starting with vowel: {find_items_starting_with_vowel(inventory)}")
+    print(f"Items containing spaces: {}")
+
+
+
 
 # func clear_duplicates()
