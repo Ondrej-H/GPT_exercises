@@ -138,7 +138,16 @@ def find_items_starting_with_vowel(inventory) -> list:
 
 
 # func find_items_containing_spaces(inventory)
-def find_items_containing_spaces(inventory)
+def find_items_containing_spaces(inventory):
+    containing_spaces = []
+
+    for item in inventory:
+        if " " in item:
+            containing_spaces.append(item)
+
+    return containing_spaces
+
+
 
 # func show_statistics() itself
 def show_statistics(inventory):
@@ -146,7 +155,7 @@ def show_statistics(inventory):
     print(f"Shortest item: {find_shortest(inventory)}")
     print(f"Average item lenght: {find_average_lenght(inventory)}")
     print(f"Items starting with vowel: {find_items_starting_with_vowel(inventory)}")
-    print(f"Items containing spaces: {}")
+    print(f"Items containing spaces: {find_items_containing_spaces(inventory)}")
 
 
 
