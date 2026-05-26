@@ -65,6 +65,18 @@ show_inventory(lst3)"""
 
 
 # func search_item()
+def search_item(inventory):
+    searched_text = input("Search: ")
+    searched_items = []
+    for item in inventory:
+        if searched_text in item:
+            searched_items.append(item)            #print(item)
+    
+    return searched_items
+
+# test search_item():
+lst4 = ["iron sword", "health potion", "magic sword"]
+print(search_item(lst4))
 
 
 
