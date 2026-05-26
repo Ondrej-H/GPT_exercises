@@ -21,6 +21,7 @@ def add_item(inventory: list) -> None:
         print("Item already exists!")
     else:
         inventory.append(item.lower())
+        print(f"Item {item} was added to inventory.")
     
 
 #test add_item()
@@ -37,6 +38,7 @@ def remove_item(inventory: list) -> None:
         print("Item not found!")
     else:
         inventory.remove(item_to_remove)
+        print(f"Item {item_to_remove} was removed from inventory.")
 
 
 # test remove_item()
@@ -75,6 +77,7 @@ def search_item(inventory: list) -> list:
         if searched_text in item:
             searched_items.append(item)            #print(item)
     
+    print(f"Searched items: {searched_items}")
     return searched_items
 
 
@@ -113,16 +116,16 @@ def find_shortest(inventory):
     return shortest
 
 
-# func find_average_lenght()
-def find_average_lenght(inventory: list) -> float:
-    total_lenght = 0
+# func find_average_length()
+def find_average_length(inventory: list) -> float:
+    total_length = 0
 
     for item in inventory:
-        total_lenght += len(item)
+        total_length += len(item)
     
-    average_lenght = total_lenght / len(inventory)
+    average_length = total_length / len(inventory)
 
-    return average_lenght
+    return average_length
         
 
 # func find_items_starting_with_vowel(inventory)
@@ -151,15 +154,18 @@ def find_items_containing_spaces(inventory):
 
 # func show_statistics() itself
 def show_statistics(inventory):
-    print(f"Longest item: {find_longest(inventory)}")
-    print(f"Shortest item: {find_shortest(inventory)}")
-    print(f"Average item lenght: {find_average_lenght(inventory)}")
-    print(f"Items starting with vowel: {find_items_starting_with_vowel(inventory)}")
-    print(f"Items containing spaces: {find_items_containing_spaces(inventory)}")
+    if not inventory:
+        print("Inventory is empty!")
+    else:    
+        print(f"Longest item: {find_longest(inventory)}")
+        print(f"Shortest item: {find_shortest(inventory)}")
+        print(f"Average item length: {find_average_length(inventory)}")
+        print(f"Items starting with vowel: {find_items_starting_with_vowel(inventory)}")
+        print(f"Items containing spaces: {find_items_containing_spaces(inventory)}")
+    
 
 
-
-# func clear_duplicates()
+# 6 func clear_duplicates()
 def clear_duplicates(inventory):
     new_inventory = []
 
@@ -167,6 +173,53 @@ def clear_duplicates(inventory):
         if item not in new_inventory:
             new_inventory.append(item)
     
-    return inventory
+    print("Duplicates removed.")
+    return new_inventory
 
+
+# Player inventory manager itself
+print()
+print("Welcome to Inventory Manager!")
+
+inventory = []
+
+while True:
+    print("""
+1 - Add item
+2 - Remove item
+3 - Show inventory
+4 - Search item
+5 - Show statistics
+6 - Clear duplicates
+7 - Exit
+""")
+    
+    users_choice = input("Choose: ")
+
+    if users_choice == "1":
+        add_item(inventory)
+
+    elif users_choice == "2":
+        remove_item(inventory)
+
+    elif users_choice == "3":
+        show_inventory(inventory)
+
+    elif users_choice == "4":
+        search_item(inventory)
+
+    elif users_choice == "5":
+        show_statistics(inventory)
+
+    elif users_choice == "6":
+        inventory = clear_duplicates(inventory)
+
+    elif users_choice == "7":
+        print("Goodbye!")
+        break
+
+    else:
+        print("Invalid choice!")
+
+    
 
