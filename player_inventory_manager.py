@@ -33,7 +33,10 @@ print(inventory)"""
 # func remove_item ()
 def remove_item(inventory: list) -> None:
     item_to_remove = input("Enter item to remove: ")
-    inventory.remove(item_to_remove)
+    if item_to_remove not in inventory:
+        print("Item not found!")
+    else:
+        inventory.remove(item_to_remove)
 
 
 # test remove_item():
@@ -65,7 +68,7 @@ show_inventory(lst3)"""
 
 
 # func search_item()
-def search_item(inventory):
+def search_item(inventory: list) -> list:
     searched_text = input("Search: ")
     searched_items = []
     for item in inventory:
@@ -75,8 +78,8 @@ def search_item(inventory):
     return searched_items
 
 # test search_item():
-lst4 = ["iron sword", "health potion", "magic sword"]
-print(search_item(lst4))
+"""lst4 = ["iron sword", "health potion", "magic sword"]
+print(search_item(lst4))"""
 
 
 
