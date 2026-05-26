@@ -159,5 +159,14 @@ def show_statistics(inventory):
 
 
 
-
 # func clear_duplicates()
+def clear_duplicates(inventory):
+    new_inventory = []
+
+    for item in inventory:
+        if item not in new_inventory:
+            new_inventory.append(item)
+    
+    return inventory
+
+
