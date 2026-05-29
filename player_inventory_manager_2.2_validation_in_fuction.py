@@ -181,18 +181,18 @@ def clear_duplicates(inventory):
 # 7 Show all 3-letter windows - func show_3letter_windows()
 def show_3letter_windows(inventory):
     item = input("Choose item to slice: ")
-    if item in inventory:
-        
-        for i in range(len(item) + 1 - 3):
-            if item < 3:
-                print("Item is too short!")
-            else:
-                print(item[i:i+3])
-    
-    else:
+
+    if item not in inventory:
         print("Item is not in inventory!")
 
+    elif len(item) < 3:
+                print("Item is too short!")
 
+    else:        
+        for i in range(len(item) + 1 - 3):     
+            print(item[i:i+3])
+    
+    
 # run menu choice and validate
 def ask_menu_choice() -> str:
     while True:
