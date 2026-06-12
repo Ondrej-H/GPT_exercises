@@ -13,3 +13,24 @@ def show_menu():
 """)
     
 
+def add_product(product_inventory: dict) -> None:
+    product = input("Name of the product: ")
+    if product in product_inventory:
+        print("Product already exists!")
+        return
+
+    price = float(input("Price of the product: "))
+    quantity = int(input("Quantity of product: "))
+
+    product_inventory[product] = {
+        "price": price,
+        "quantity" : quantity
+    }
+
+    print(f"Succesfully added product {product} of price {price} and quantity {quantity}.")
+
+
+# test add_product
+"""product_inventory = {}
+add_product(product_inventory)
+print(product_inventory)"""
