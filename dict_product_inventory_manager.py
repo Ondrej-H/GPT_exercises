@@ -65,3 +65,19 @@ def view_product(product_inventory: dict) -> None:
 # test view_product()
 """view_product(inventory)"""
 
+
+def update_quantity(product_inventory):
+    product_to_update = input("Product to update: ")
+
+    if product_to_update not in product_inventory:
+        print(f"Product {product_to_update} not found.")
+        return
+
+    new_quantity = int(input("New quantity: "))
+
+    product_inventory[product_to_update]["quantity"] = new_quantity
+
+
+# test update_quantity()
+update_quantity(inventory)
+print(inventory)
