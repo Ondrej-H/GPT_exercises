@@ -71,3 +71,15 @@ def mark_as_read(library: dict, title: str) -> bool:
 print(library)"""
 
 
+def list_all_books(library: dict) -> list[str]:
+    all_books = []
+    for title in library.keys():
+        all_books.append(title)
+    
+    return all_books
+
+
+# test list_all_books()
+print(list_all_books(library))
+
+
