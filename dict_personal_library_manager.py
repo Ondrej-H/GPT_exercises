@@ -45,3 +45,16 @@ def find_book(library: dict, title: str) -> dict | None:
 """print(find_book(library, "1984"))"""
 
 
+def remove_book(library: dict, title: str) -> bool:
+    if title in library:
+        del library[title]
+        return True
+    
+    return False
+
+
+# test remove_book
+"""remove_book(library, "1984")
+print(library)"""
+
+
