@@ -105,21 +105,21 @@ def delete_product(product_inventory: dict) -> None:
 print(inventory)"""
 
 
-def show_statistics(product_inventory):
+def show_statistics(product_inventory: dict) -> None:
     if not product_inventory:
         print("Inventory is empty.")
         return
     
-    print(f"Total products: {len(product_inventory)}")
-
-    
+    print(f"Total products: {len(product_inventory)}") 
 
     total_quantity = 0
-    for product in product_inventory:
-        total_quantity += product_inventory[product]["quantity"]
+    for product_info in product_inventory.values():
+        total_quantity += product_info["quantity"]
 
     print(f"Total quantity: {total_quantity}")
 
 
 # test show_statistics()
-show_statistics(inventory)
+"""show_statistics(inventory)"""
+
+
