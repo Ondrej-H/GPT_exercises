@@ -58,3 +58,16 @@ def remove_book(library: dict, title: str) -> bool:
 print(library)"""
 
 
+def mark_as_read(library: dict, title: str) -> bool:
+    if title in library:
+        library[title]["read"] = True
+        return True
+    
+    return False
+
+
+# test mark_as_read()
+"""mark_as_read(library, "Dune")
+print(library)"""
+
+
