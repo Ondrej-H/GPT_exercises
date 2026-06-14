@@ -28,3 +28,20 @@ def add_book(library: dict, title: str, author: str, year: int) -> bool:
     }
     return True
 
+
+# test add_book()
+"""add_book(library, "Les Miserables", "Victor Hugo", 1862)
+print(library)"""
+
+
+def find_book(library: dict, title: str) -> dict | None:
+    if title in library:
+        return library[title]
+    
+    return None
+
+
+# test find_book()
+"""print(find_book(library, "1984"))"""
+
+
