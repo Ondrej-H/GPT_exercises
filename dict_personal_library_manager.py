@@ -17,3 +17,14 @@ library = {
 }
 
 
+def add_book(library: dict, title: str, author: str, year: int) -> bool:
+    if title in library:
+        return False
+    
+    library[title] = {
+        "author": author,
+        "year": year,
+        "read": False
+    }
+    return True
+
