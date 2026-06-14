@@ -131,5 +131,17 @@ def show_statistics(product_inventory: dict) -> None:
 show_statistics(inventory)"""
 
 
-def show_all_products(product_inventory):
-    for product_name
+def show_all_products(product_inventory: dict) -> None:
+    if not product_inventory:
+        print("Product inventory is empty.")
+        return
+
+    for product_name, product_info in product_inventory.items():
+        print()
+        print(product_name)
+        print(f"Price: {product_info['price']}")
+        print(f"Quantity: {product_info['quantity']}")
+
+# test show_all_products()
+"""show_all_products(inventory)"""
+

@@ -1,1 +1,3 @@
-print(list(range(1,8)))
+product_info = {"price": 25}
+
+print(f"Price: {product_info["price"]}")
