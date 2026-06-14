@@ -109,17 +109,25 @@ def show_statistics(product_inventory: dict) -> None:
     if not product_inventory:
         print("Inventory is empty.")
         return
-    
-    print(f"Total products: {len(product_inventory)}") 
 
     total_quantity = 0
+    most_expensive_price = 0
+    most_expensive_name = ""
+    
     for product_info in product_inventory.values():
         total_quantity += product_info["quantity"]
 
+    for product, product_info in product_inventory.items():
+        if most_expensive_price < product_info["price"]:
+            most_expensive_price = product_info["price"]
+            most_expensive_name = product
+
+    print(f"Total products: {len(product_inventory)}")
     print(f"Total quantity: {total_quantity}")
+    print(f"Most expensive product: {most_expensive_name} with price of {most_expensive_price}.")
+        
 
-
-# test show_statistics()
-"""show_statistics(inventory)"""
+"""# test show_statistics()
+show_statistics(inventory)"""
 
 
