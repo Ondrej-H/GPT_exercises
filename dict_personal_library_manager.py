@@ -129,11 +129,27 @@ def get_oldest_book(library: dict) -> str | None:
 
 
 # test get_oldest_book()
-print(get_oldest_book(library))
+"""print(get_oldest_book(library))"""
 
 
+def get_newest_book(library: dict) -> str | None:
+    if not library:
+        return None
+    
+    newest_book = None
+    newest_book_year = 0
+
+    for book_name, book_data in library.items():
+
+        if book_data["year"] > newest_book_year:            
+            newest_book_year = book_data["year"]
+            newest_book = book_name
+
+    return newest_book
 
 
+# test get_newest_book()
+print(get_newest_book(library))
 
 
 
