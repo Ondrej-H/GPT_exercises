@@ -1,4 +1,4 @@
-# PERSONAL LIBRARY MAGER
+# PERSONAL LIBRARY MANAGER
 #  --------------------
 
 # library for testing
@@ -72,11 +72,13 @@ print(library)"""
 
 
 def list_all_books(library: dict) -> list[str]:
-    all_books = []
+    return list(library)
+    # same as:
+    """all_books = []
     for title in library.keys():
         all_books.append(title)
     
-    return all_books
+    return all_books"""
 
 
 # test list_all_books()
