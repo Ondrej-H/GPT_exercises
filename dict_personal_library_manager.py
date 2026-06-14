@@ -112,5 +112,32 @@ def count_unread_books(library: dict) -> int:
 # test count_unread_books()
 """print(count_unread_books(library))"""
 
+
+def get_oldest_book(library: dict) -> str | None:
+    if not library:
+        return None
+
+    oldest_book = None
+    oldest_book_year = 2026
+
+    for book_name, book_data in library.items():
+        if book_data["year"] < oldest_book_year:
+            oldest_book_year = book_data["year"]
+            oldest_book = book_name
+
+    return oldest_book
+
+
+# test get_oldest_book()
+print(get_oldest_book(library))
+
+
+
+
+
+
+
+
+
 """"dict_personal_library_manager: Add fn """
 
