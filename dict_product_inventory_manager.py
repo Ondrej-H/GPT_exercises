@@ -26,20 +26,20 @@ def show_menu():
     
 
 def add_product(product_inventory: dict) -> None:
-    product = input("Name of the product: ")
-    if product in product_inventory:
+    product_name = input("Name of the product: ")
+    if product_name in product_inventory:
         print("Product already exists!")
         return
 
     price = float(input("Price of the product: "))
     quantity = int(input("Quantity of product: "))
 
-    product_inventory[product] = {
+    product_inventory[product_name] = {
         "price": price,
         "quantity" : quantity
     }
 
-    print(f"Succesfully added product {product} of price {price} and quantity {quantity}.")
+    print(f"Succesfully added product {product_name} of price {price} and quantity {quantity}.")
 
 
 # test add_product
@@ -117,10 +117,10 @@ def show_statistics(product_inventory: dict) -> None:
     for product_info in product_inventory.values():
         total_quantity += product_info["quantity"]
 
-    for product, product_info in product_inventory.items():
+    for product_name, product_info in product_inventory.items():
         if most_expensive_price < product_info["price"]:
             most_expensive_price = product_info["price"]
-            most_expensive_name = product
+            most_expensive_name = product_name
 
     print(f"Total products: {len(product_inventory)}")
     print(f"Total quantity: {total_quantity}")
@@ -131,3 +131,5 @@ def show_statistics(product_inventory: dict) -> None:
 show_statistics(inventory)"""
 
 
+def show_all_products(product_inventory):
+    for product_name
