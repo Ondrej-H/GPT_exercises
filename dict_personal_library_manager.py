@@ -85,9 +85,9 @@ def list_all_books(library: dict) -> list[str]:
 """print(list_all_books(library))"""
 
 
-
 def count_read_books(library: dict) -> int:
     num_read_books = 0
+
     for book_data in library.values():
         if book_data["read"]:
             num_read_books += 1
@@ -98,4 +98,19 @@ def count_read_books(library: dict) -> int:
 # test count_read_books()
 """print(count_read_books(library))"""
 
+
+def count_unread_books(library: dict) -> int:
+    num_unread_books = 0
+
+    for book_data in library.values():
+        if not book_data["read"]:
+            num_unread_books += 1
+    
+    return num_unread_books
+
+
+# test count_unread_books()
+"""print(count_unread_books(library))"""
+
+""""dict_personal_library_manager: Add fn """
 
