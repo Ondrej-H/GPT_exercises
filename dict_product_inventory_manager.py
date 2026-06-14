@@ -66,7 +66,7 @@ def view_product(product_inventory: dict) -> None:
 """view_product(inventory)"""
 
 
-def update_quantity(product_inventory):
+def update_quantity(product_inventory: dict) -> None:
     product_to_update = input("Product to update: ")
 
     if product_to_update not in product_inventory:
@@ -79,5 +79,29 @@ def update_quantity(product_inventory):
 
 
 # test update_quantity()
-update_quantity(inventory)
-print(inventory)
+"""update_quantity(inventory)
+print(inventory)"""
+
+
+def delete_product(product_inventory: dict) -> None:
+    product_to_delete = input("Product to delete: ")
+    
+    if product_to_delete not in product_inventory:
+        print("Product not found.")
+        return
+    
+    verification = input(f"Are you sure you want to permanently delete product {product_to_delete}? y/n: ")
+    
+    if verification.lower() in ["y", "yes"]: #same as if verification.lower() == "y" or verification.lower() == "yes":
+        del product_inventory[product_to_delete]
+        print(f"Product {product_to_delete} successfuly deleted.")
+        return
+
+    print(f"Product {product_to_delete} was NOT deleted.")
+
+
+# test delete_product
+"""delete_product(inventory)
+print(inventory)"""
+
+
