@@ -26,7 +26,10 @@ def show_menu():
     
 
 def add_product(product_inventory: dict) -> None:
-    product_name = input("Name of the product: ")
+    print()
+    print("Add product")
+    product_name = input("Name of the product: ").strip().lower()
+
     if product_name in product_inventory:
         print("Product already exists!")
         return
@@ -49,7 +52,9 @@ print(product_inventory)"""
 
 
 def view_product(product_inventory: dict) -> None:
-    product_to_view = input("Name of the product to view: ")
+    print()
+    print("View product")
+    product_to_view = input("Name of the product to view: ").strip().lower()
 
     product_info = product_inventory.get(product_to_view)
 
@@ -57,6 +62,7 @@ def view_product(product_inventory: dict) -> None:
         print("Product not found.")
         return
     
+    print()
     print(f"Name of the product: {product_to_view}")
     print(f"Price: {product_info['price']}")
     print(f"Quantity: {product_info['quantity']}")
@@ -67,14 +73,21 @@ def view_product(product_inventory: dict) -> None:
 
 
 def update_quantity(product_inventory: dict) -> None:
-    product_to_update = input("Product to update: ")
+    print()
+    print("Update quantity")
+    product_to_update = input("Product to update: ").strip().lower()
 
     if product_to_update not in product_inventory:
         print(f"Product {product_to_update} not found.")
         return
 
-    new_quantity = int(input("New quantity: "))
-
+    new_quantity = input("New quantity: ")
+    if not new_quantity.isnumeric():
+        print("Quantity was NOT updated.")
+        return
+    
+    new_quantity = int(new_quantity)
+    
     product_inventory[product_to_update]["quantity"] = new_quantity
 
 
@@ -84,7 +97,9 @@ print(inventory)"""
 
 
 def delete_product(product_inventory: dict) -> None:
-    product_to_delete = input("Product to delete: ")
+    print()
+    print("Delete product")
+    product_to_delete = input("Product to delete: ").strip().lower()
     
     if product_to_delete not in product_inventory:
         print("Product not found.")
@@ -106,6 +121,8 @@ print(inventory)"""
 
 
 def show_statistics(product_inventory: dict) -> None:
+    print()
+    print("Statistics")
     if not product_inventory:
         print("Inventory is empty.")
         return
@@ -132,16 +149,60 @@ show_statistics(inventory)"""
 
 
 def show_all_products(product_inventory: dict) -> None:
+    print()
+    print("Show all products")
     if not product_inventory:
         print("Product inventory is empty.")
         return
 
     for product_name, product_info in product_inventory.items():
-        print()
         print(product_name)
         print(f"Price: {product_info['price']}")
         print(f"Quantity: {product_info['quantity']}")
+        print()
 
 # test show_all_products()
 """show_all_products(inventory)"""
 
+
+# while loop to run the program
+"""
+1 - Add product
+2 - View product
+3 - Update quantity
+4 - Delete product
+5 - Show statistics
+6 - Show all products
+7 - Exit
+"""
+print()
+print("Welcome to Product Inventory Manager!")
+while True:
+    show_menu()
+    menu_choice = input("Choose: ")
+
+    if menu_choice == "1":
+        add_product(inventory)
+
+    elif menu_choice == "2":
+        view_product(inventory)
+
+    elif menu_choice == "3":
+        update_quantity(inventory)
+
+    elif menu_choice == "4":
+        delete_product(inventory)
+
+    elif menu_choice == "5":
+        show_statistics(inventory)
+
+    elif menu_choice == "6":
+        show_all_products(inventory)
+
+    elif menu_choice == "7":
+        print()
+        print("Good bye!")
+        break
+
+    else:
+        print("Invalid choice. Please try again.")
