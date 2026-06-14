@@ -82,6 +82,20 @@ def list_all_books(library: dict) -> list[str]:
 
 
 # test list_all_books()
-print(list_all_books(library))
+"""print(list_all_books(library))"""
+
+
+
+def count_read_books(library: dict) -> int:
+    num_read_books = 0
+    for book_data in library.values():
+        if book_data["read"]:
+            num_read_books += 1
+
+    return num_read_books
+
+
+# test count_read_books()
+"""print(count_read_books(library))"""
 
 
