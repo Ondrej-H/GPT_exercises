@@ -197,11 +197,20 @@ while True:
         print("Add book")
         title = input("Title: ")
         author = input("Author: ")
-        year = input("Year: ")
+        year_input = input("Year: ")
 
-        add_book(library, title, author, year)
+        if not author:
+            author = None
 
-        print(f"Book {title} succesfully added to library.")
+        year = int(year_input) if year_input else None
+
+        success = add_book(library, title, author, year)
+
+        if success:
+            print(f"Book {title} was successfully added to the library.")
+        
+        else:
+            print(f"Book {title} is already in the library!")
 
     
 
@@ -212,5 +221,5 @@ while True:
 
 
 
-"""dict_personal_library_manager: Add fn """
+"""dict_personal_library_manager: in get_newest_book() case <year is None> treated"""
 
