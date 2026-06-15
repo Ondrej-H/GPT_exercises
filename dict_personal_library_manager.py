@@ -241,15 +241,21 @@ while True:
         print("Remove book")
         book_to_remove = input("Book to remove: ")
 
-        success = remove_book(library, book_to_remove)
+        confirmation = input(f"Are you sure you want to remove {book_to_remove}? y/n > ")
 
-        if success:
-            print(f"Book {book_to_remove} was successfully removed.")
+        if confirmation == "y":
+            success = remove_book(library, book_to_remove)
+
+            if success:
+                print(f"Book {book_to_remove} was successfully removed.")
+            else:
+                print("Such book is not in library. No book was removed.")
+
         else:
-            print("Such book is not in library. No book was removed.")
+            print("Removing book cancelled.")
 
 
-
+    
 """
 def remove_book(library: dict, title: str) -> bool:
     if title in library:
