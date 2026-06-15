@@ -255,11 +255,27 @@ while True:
             print("Removing book cancelled.")
 
 
+    elif menu_choice == "4":
+        print()
+        print("Mark as read")
+
+        book_to_mark_as_read = input("Which book was read? > ")
+
+        success = mark_as_read(library, book_to_mark_as_read)
+
+        if success:
+            print(f"Book {book_to_mark_as_read} was marked as read.")
+
+        else:
+            print("No such book in the library.")
+
+
+
     
 """
-def remove_book(library: dict, title: str) -> bool:
+def mark_as_read(library: dict, title: str) -> bool:
     if title in library:
-        del library[title]
+        library[title]["read"] = True
         return True
     
     return False
