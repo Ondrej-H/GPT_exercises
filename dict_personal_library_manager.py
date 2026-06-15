@@ -151,7 +151,10 @@ def get_newest_book(library: dict) -> str | None:
 
     for book_name, book_data in library.items():
 
-        if newest_book is None:
+        if book_data["year"] is None:
+            continue
+
+        elif newest_book is None:
             newest_book = book_name
 
         elif book_data["year"] > library[newest_book]["year"]:            
