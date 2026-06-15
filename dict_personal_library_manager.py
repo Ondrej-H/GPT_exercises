@@ -164,11 +164,53 @@ def get_newest_book(library: dict) -> str | None:
 
 
 # test get_newest_book()
-print(get_newest_book(library))
+"""print(get_newest_book(library))"""
+
+
+# menu
+"""
+1 - Add book
+2 - Find book
+3 - Remove book
+4 - Mark as read
+5 - Show all books
+6 - Show statistics
+7 - Exit
+"""
+
+while True:
+
+    print("""
+1 - Add book
+2 - Find book
+3 - Remove book
+4 - Mark as read
+5 - Show all books
+6 - Show statistics
+7 - Exit
+""")
+
+    menu_choice = input("Choose: ")
+
+    if menu_choice == "1":
+        print()
+        print("Add book")
+        title = input("Title: ")
+        author = input("Author: ")
+        year = input("Year: ")
+
+        add_book(library, title, author, year)
+
+        print(f"Book {title} succesfully added to library.")
+
+    
 
 
 
 
 
-""""dict_personal_library_manager: Add fn """
+
+
+
+"""dict_personal_library_manager: Add fn """
 
