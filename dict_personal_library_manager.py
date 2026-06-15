@@ -304,6 +304,10 @@ while True:
             print("Newest book: Unknown")
 
 
+    elif menu_choice == "7":
+        print("Good bye!")
+        break
+
 '''
 
 '''
