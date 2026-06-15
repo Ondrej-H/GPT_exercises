@@ -284,16 +284,28 @@ while True:
             print("Library is empty!")
 
 
-    
+    elif menu_choice == "6":
+        print()
+        print("Statistics")
+        print(f"Total books: {len(library)}")
+        print(f"Read books: {count_read_books(library)}")
+        print(f"Unread books: {count_unread_books(library)}")
+        
+        oldest_book = get_oldest_book(library)
+        if oldest_book:
+            print(f"Oldest book: {oldest_book}")
+        else:
+            print("Oldest book: Unknown")
+
+        newest_book = get_newest_book(library)
+        if newest_book:
+            print(f"Newest book: {newest_book}")
+        else:
+            print("Newest book: Unknown")
+
+
 '''
-def list_all_books(library: dict) -> list[str]:
-    return list(library)
-    # same as:
-    """all_books = []
-    for title in library.keys():
-        all_books.append(title)
-    
-    return all_books"""
+
 '''
 
 
