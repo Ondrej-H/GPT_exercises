@@ -118,11 +118,13 @@ def get_oldest_book(library: dict) -> str | None:
         return None
 
     oldest_book = None
-    oldest_book_year = 2026
 
     for book_name, book_data in library.items():
-        if book_data["year"] < oldest_book_year:
-            oldest_book_year = book_data["year"]
+
+        if oldest_book is None:
+            oldest_book = book_name
+
+        elif book_data["year"] < library[oldest_book]["year"]:
             oldest_book = book_name
 
     return oldest_book
