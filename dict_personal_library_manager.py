@@ -270,16 +270,31 @@ while True:
             print("No such book in the library.")
 
 
+    elif menu_choice == "5":
+        print()
+        print("Show all books")
+
+        all_books_list = list_all_books(library)
+
+        if all_books_list:
+            for book in all_books_list:
+                print(book)
+
+        else:
+            print("Library is empty!")
+
 
     
-"""
-def mark_as_read(library: dict, title: str) -> bool:
-    if title in library:
-        library[title]["read"] = True
-        return True
+'''
+def list_all_books(library: dict) -> list[str]:
+    return list(library)
+    # same as:
+    """all_books = []
+    for title in library.keys():
+        all_books.append(title)
     
-    return False
-"""
+    return all_books"""
+'''
 
 
 """dict_personal_library_manager: in get_newest_book() case <year is None> treated"""
