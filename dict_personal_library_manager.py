@@ -212,13 +212,28 @@ while True:
         else:
             print(f"Book {title} is already in the library!")
 
-    
 
+    elif menu_choice == "2":
+        print()
+        print("Find book")
 
+        book_to_find = input("Book to find: ")
+        
+        found_book = find_book(library, book_to_find)
 
+        if found_book:
+            print()
+            print("Book found:")
+            print(f"Title: {book_to_find}")
+            print(f"Author: {found_book['author']}")
+            print(f"Year: {found_book['year']}")
+            if found_book["read"]:
+                print(f"Read: Book was already read.")
+            else:
+                print(f"Read: Book is yet to read.")      
 
-
-
+        else:
+            print(f"Book {book_to_find} was not found in library.")
 
 
 """dict_personal_library_manager: in get_newest_book() case <year is None> treated"""
