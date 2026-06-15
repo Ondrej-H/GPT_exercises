@@ -17,7 +17,13 @@ library = {
 }
 
 
-def add_book(library: dict, title: str, author: str, year: int) -> bool:
+def add_book(
+        library: dict,
+        title: str,
+        author: str | None = None,
+        year: int | None = None
+        ) -> bool:
+    
     if title in library:
         return False
     
