@@ -236,5 +236,29 @@ while True:
             print(f"Book {book_to_find} was not found in library.")
 
 
+    elif menu_choice == "3":
+        print()
+        print("Remove book")
+        book_to_remove = input("Book to remove: ")
+
+        success = remove_book(library, book_to_remove)
+
+        if success:
+            print(f"Book {book_to_remove} was successfully removed.")
+        else:
+            print("Such book is not in library. No book was removed.")
+
+
+
+"""
+def remove_book(library: dict, title: str) -> bool:
+    if title in library:
+        del library[title]
+        return True
+    
+    return False
+"""
+
+
 """dict_personal_library_manager: in get_newest_book() case <year is None> treated"""
 
