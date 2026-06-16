@@ -40,10 +40,11 @@ def add_book(
 print(library)"""
 
 
-def find_book(library: dict, title: str) -> dict | None:
-    if title in library:
-        return library[title]
-    
+def find_book(library: dict, title: str) -> tuple[str, dict] | None:
+    for book_name, book_data in library.items():
+        if title.lower() == book_name.lower():
+            return book_name, book_data
+
     return None
 
 
@@ -232,21 +233,23 @@ while True:
         found_book = find_book(library, book_to_find)
 
         if found_book:
+            book_name, book_data = found_book
             print()
             print("Book found:")
-            print(f"Title: {book_to_find}")
+            
+            print(f"Title: {book_name}")            
 
-            if found_book["author"]:
-                print(f"Author: {found_book['author']}")
+            if book_data["author"]:
+                print(f"Author: {book_data['author']}")
             else:
                 print("Author: Unknown")
             
-            if found_book["year"] is None:
+            if book_data["year"] is None:
                 print("Year: Unknown")
             else:
-                print(f"Year: {found_book['year']}")
+                print(f"Year: {book_data['year']}")
                             
-            if found_book["read"]:
+            if book_data["read"]:
                 print(f"Read: Book was already read.")
             else:
                 print(f"Read: Book is yet to read.")      
