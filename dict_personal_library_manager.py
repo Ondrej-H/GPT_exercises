@@ -119,6 +119,17 @@ def count_unread_books(library: dict) -> int:
 """print(count_unread_books(library))"""
 
 
+def list_books_with_unknown_year(library: dict) -> list[str]:
+    books_with_unknown_year = []
+
+    for book_name, book_data in library.items():
+        if book_data["year"] is None:
+            books_with_unknown_year.append(book_name)
+
+    return books_with_unknown_year
+
+
+
 def get_oldest_book(library: dict) -> str | None:
     if not library:
         return None
