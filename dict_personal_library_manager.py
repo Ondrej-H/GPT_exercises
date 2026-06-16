@@ -67,15 +67,19 @@ def remove_book(library: dict, title_to_remove: str) -> bool:
 print(library)"""
 
 
-def mark_as_read(library: dict, title_to_mark: str) -> bool:
+def mark_as_read(library: dict, title_to_mark: str) -> str:
     found_book = find_book(library, title_to_mark)
     
-    if found_book:
-        book_name, _ = found_book
-        library[book_name]["read"] = True
-        return True
+    if not found_book:
+        return "not_found"
 
-    return False
+    _, book_data = found_book
+
+    if book_data["read"]:
+        return "already_read"
+    
+    book_data["read"] = True
+    return "marked_as_read"
 
 
 # test mark_as_read()
