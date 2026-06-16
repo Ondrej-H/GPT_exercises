@@ -66,10 +66,11 @@ def remove_book(library: dict, title_to_remove: str) -> bool:
 print(library)"""
 
 
-def mark_as_read(library: dict, title: str) -> bool:
-    if title in library:
-        library[title]["read"] = True
-        return True
+def mark_as_read(library: dict, title_to_mark: str) -> bool:
+    for book_name in library:
+        if title_to_mark.lower() == book_name.lower():
+            library[book_name]["read"] = True
+            return True
     
     return False
 
