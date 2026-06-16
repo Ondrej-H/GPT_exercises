@@ -129,7 +129,6 @@ def list_books_with_unknown_year(library: dict) -> list[str]:
     return books_with_unknown_year
 
 
-
 def get_oldest_book(library: dict) -> str | None:
     if not library:
         return None
@@ -313,7 +312,7 @@ while True:
         
         oldest_book = get_oldest_book(library)
         if oldest_book:
-            print(f"Oldest book: {oldest_book}")
+            print(f"Oldest book: {oldest_book}")            
         else:
             print("Oldest book: Unknown")
 
@@ -323,6 +322,10 @@ while True:
         else:
             print("Newest book: Unknown")
 
+        books_without_year = list_books_with_unknown_year(library)
+        if books_without_year:
+            print("However, these books were not included because their year is unknown:")
+            print(", ".join(books_without_year))
 
     elif menu_choice == "7":
         print("Good bye!")
