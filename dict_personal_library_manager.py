@@ -52,10 +52,11 @@ def find_book(library: dict, title: str) -> tuple[str, dict] | None:
 """print(find_book(library, "1984"))"""
 
 
-def remove_book(library: dict, title: str) -> bool:
-    if title in library:
-        del library[title]
-        return True
+def remove_book(library: dict, title_to_remove: str) -> bool:
+    for book_name in library.keys():
+        if title_to_remove.lower() == book_name.lower():
+            del library[book_name]
+            return True
     
     return False
 
