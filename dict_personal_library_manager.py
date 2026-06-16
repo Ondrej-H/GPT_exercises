@@ -53,10 +53,11 @@ def find_book(library: dict, title: str) -> tuple[str, dict] | None:
 
 
 def remove_book(library: dict, title_to_remove: str) -> bool:
-    for book_name in library.keys():
-        if title_to_remove.lower() == book_name.lower():
-            del library[book_name]
-            return True
+    found_book = find_book(library, title_to_remove)
+    if found_book:
+        book_name, _ = found_book   # _ means the second value exists, but I don't need it
+        del library[book_name]
+        return True
     
     return False
 
