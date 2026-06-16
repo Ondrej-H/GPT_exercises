@@ -68,11 +68,13 @@ print(library)"""
 
 
 def mark_as_read(library: dict, title_to_mark: str) -> bool:
-    for book_name in library:
-        if title_to_mark.lower() == book_name.lower():
-            library[book_name]["read"] = True
-            return True
+    found_book = find_book(library, title_to_mark)
     
+    if found_book:
+        book_name, _ = found_book
+        library[book_name]["read"] = True
+        return True
+
     return False
 
 
