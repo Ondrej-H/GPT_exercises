@@ -225,8 +225,17 @@ while True:
             print()
             print("Book found:")
             print(f"Title: {book_to_find}")
-            print(f"Author: {found_book['author']}")
-            print(f"Year: {found_book['year']}")
+
+            if found_book["author"]:
+                print(f"Author: {found_book['author']}")
+            else:
+                print("Author: Unknown")
+            
+            if found_book["year"] is None:
+                print("Year: Unknown")
+            else:
+                print(f"Year: {found_book['year']}")
+                            
             if found_book["read"]:
                 print(f"Read: Book was already read.")
             else:
@@ -313,5 +322,5 @@ while True:
 '''
 
 
-"""dict_personal_library_manager: in get_newest_book() case <year is None> treated"""
+"""dict_personal_library_manager: """
 
