@@ -16,30 +16,6 @@ library = {
     }
 }
 
-
-def add_book(
-        library: dict,
-        title: str,
-        author: str | None = None,
-        year: int | None = None
-        ) -> bool:
-    
-    if title in library:
-        return False
-    
-    library[title] = {
-        "author": author,
-        "year": year,
-        "read": False
-    }
-    return True
-
-
-# test add_book()
-"""add_book(library, "Les Miserables", "Victor Hugo", 1862)
-print(library)"""
-
-
 def find_book(library: dict, title: str) -> tuple[str, dict] | None:
     for book_name, book_data in library.items():
         if title.lower() == book_name.lower():
@@ -50,6 +26,31 @@ def find_book(library: dict, title: str) -> tuple[str, dict] | None:
 
 # test find_book()
 """print(find_book(library, "1984"))"""
+
+
+def add_book(
+        library: dict,
+        title_to_add: str,
+        author: str | None = None,
+        year: int | None = None
+        ) -> bool:
+    
+    found_book = find_book(library, title_to_add)
+
+    if found_book:
+        return False
+    
+    library[title_to_add] = {
+        "author": author,
+        "year": year,
+        "read": False
+    }
+    return True
+
+
+# test add_book()
+"""add_book(library, "Les Miserables", "Victor Hugo", 1862)
+print(library)"""
 
 
 def remove_book(library: dict, title_to_remove: str) -> bool:
