@@ -274,12 +274,14 @@ while True:
         book_to_remove = input("Book to remove: ")
 
         confirmation = input(f"Are you sure you want to remove {book_to_remove}? y/n > ")
+        found_book = find_book(library, book_to_remove)
 
         if confirmation == "y":
-            success = remove_book(library, book_to_remove)
-
+            success = remove_book(library, book_to_remove)            
+            
             if success:
-                print(f"Book {book_to_remove} was successfully removed.")
+                book_name, _ = found_book
+                print(f"Book {book_name} was successfully removed.")
             else:
                 print("Such book is not in library. No book was removed.")
 
