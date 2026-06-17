@@ -294,17 +294,19 @@ while True:
         print("Mark as read")
 
         book_to_mark_as_read = input("Which book was read? > ")
-
         result = mark_as_read(library, book_to_mark_as_read)
-
+        
         if result == "not_found":
-            print("No such book in the library.")
+            print("No such book in the library.")        
+        
+        else:
+            book_name, _ = find_book(library, book_to_mark_as_read)
 
-        elif result == "already_read":
-            print(f"Book {book_to_mark_as_read} is already marked as read!")
+            if result == "already_read":            
+                print(f"Book {book_name} is already marked as read!")
 
-        elif result == "marked_as_read":
-            print(f"Book {book_to_mark_as_read} was marked as read.")         
+            else:
+                print(f"Book {book_name} was marked as read.")         
 
 
     elif menu_choice == "5":
