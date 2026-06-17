@@ -68,8 +68,8 @@ def remove_book(library: dict, title_to_remove: str) -> bool:
 print(library)"""
 
 
-def mark_as_read(library: dict, title_to_mark: str) -> str:
-    found_book = find_book(library, title_to_mark)
+def mark_as_read(library: dict, title_to_change: str) -> str:
+    found_book = find_book(library, title_to_change)
     
     if not found_book:
         return "not_found"
@@ -85,6 +85,26 @@ def mark_as_read(library: dict, title_to_mark: str) -> str:
 
 # test mark_as_read()
 """mark_as_read(library, "Dune")
+print(library)"""
+
+
+def mark_as_unread(library: dict, title_to_change: str) -> str:
+    found_book = find_book(library, title_to_change)
+    
+    if not found_book:
+        return "not_found"
+
+    _, book_data = found_book
+
+    if not book_data["read"]:
+        return "already_unread"
+    
+    book_data["read"] = False
+    return "marked_as_unread"
+
+
+# test mark_as_read()
+"""mark_as_unread(library, "1984")
 print(library)"""
 
 
