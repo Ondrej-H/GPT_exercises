@@ -208,6 +208,45 @@ def get_newest_book(library: dict) -> str | None:
 """print(get_newest_book(library))"""
 
 
+def edit_book(
+        library: dict,
+        title_to_edit: str,
+        new_title: str,
+        new_author: str | None = None,
+        new_year: int | str = "unknown",
+        new_read: bool | None = None
+        ) -> dict:
+    
+    book_to_edit = find_book(library, title_to_edit)
+    
+    if book_to_edit:
+
+        book_name, book_data = book_to_edit
+        library[new_title] = book_data
+        new_book_data = library[new_title]
+
+        if new_author:
+            new_book_data["author"] = new_author
+
+        if new_year is not None:
+            new_book_data["year"] = new_year
+
+        if new_read is not None:
+            new_book_data["read"] = new_read
+
+        del library[book_name]
+
+        return new_title, new_book_data
+     
+    return False
+
+# test edit_book()
+edit_book(library, "1984", "Poo")
+print(library)
+
+
+
+
 # menu
 """
 1 - Add book
