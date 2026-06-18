@@ -238,19 +238,19 @@ def change_author(
         library: dict,
         book_to_change: str,
         new_author: str
-) -> bool:
+) -> str:
     found_book = find_book(library, book_to_change)
 
     if found_book is None:
-        return False
+        return "not_found"
     
     if not new_author:
-        return False
+        return "empty_author"
 
     _, book_data = found_book
     book_data["author"] = new_author
 
-    return True
+    return "author_updated"
    
 
 # test change_author()
@@ -286,18 +286,6 @@ def remove_year(library: dict, book_to_change: str) -> str:
     
     book_data["year"] = None
     return "removed"
-
-
-
-
-"""
-rename_book() DONE
-change_author() DONE
-change_year() DONE
-remove_year()
-mark_as_read()
-mark_as_unread()
-"""
 
 
 # menu
