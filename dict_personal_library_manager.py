@@ -53,9 +53,9 @@ def add_book(
 print(library)"""
 
 
-def remove_book(library: dict, title_to_remove: str) -> bool:
+def remove_book(library: dict, title_to_remove: str) -> str:
     found_book = find_book(library, title_to_remove)
-    if find_book is None:
+    if found_book is None:
         return "not_found"
 
     book_name, _ = found_book   # _ means the second value exists, but I don't need it
@@ -222,7 +222,7 @@ def rename_book(
             library[new_book_name] = book_data
             del library[book_name]
 
-            return "succsess"
+            return "success"
         
         else:
             return "already_exists"
@@ -380,7 +380,7 @@ while True:
         if confirmation == "y":
             result = remove_book(library, book_to_remove)            
             
-            if result == "succsess":
+            if result == "success":
                 book_name, _ = found_book
                 print(f"Book {book_name} was successfully removed.")
             else:
