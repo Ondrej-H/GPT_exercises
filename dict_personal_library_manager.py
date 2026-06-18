@@ -443,9 +443,26 @@ Edit book menu:
 """)
             edit_choice = input("Choose: ")
 
+            if edit_choice == "1":
+                print()
+                print("Rename book")
+                book_to_rename = input("Book to rename: ")
+                new_name = input("New name: ")
+
+                result = rename_book(library, book_to_rename, new_name)
+
+                if result == "success":
+                    print(f"Book {book_to_rename} was successfully renamed to {new_name}.")
+                elif result == "already_exists":
+                    print(f"A book named {new_name} already exists in the library! Try another name.")
+                else:
+                    print(f"Book {book_to_rename} is not in the library.")
+
             
-            if edit_choice == "7":
+            elif edit_choice == "7":
                 break
+
+
 
     elif menu_choice == "7":
         print("Good bye!")
