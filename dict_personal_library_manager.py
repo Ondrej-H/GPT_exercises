@@ -55,12 +55,13 @@ print(library)"""
 
 def remove_book(library: dict, title_to_remove: str) -> bool:
     found_book = find_book(library, title_to_remove)
-    if found_book:
-        book_name, _ = found_book   # _ means the second value exists, but I don't need it
-        del library[book_name]
-        return True
-    
-    return False
+    if find_book is None:
+        return "not_found"
+
+    book_name, _ = found_book   # _ means the second value exists, but I don't need it
+    del library[book_name]
+    return "success"
+
 
 
 # test remove_book
@@ -377,9 +378,9 @@ while True:
         found_book = find_book(library, book_to_remove)
 
         if confirmation == "y":
-            success = remove_book(library, book_to_remove)            
+            result = remove_book(library, book_to_remove)            
             
-            if success:
+            if result == "succsess":
                 book_name, _ = found_book
                 print(f"Book {book_name} was successfully removed.")
             else:
