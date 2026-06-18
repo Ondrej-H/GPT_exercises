@@ -274,10 +274,26 @@ def change_year(
     return True
 
 
+def remove_year(library: dict, book_to_change: str) -> str:
+    found_book = find_book(library, book_to_change)
+
+    if found_book is None:
+        return "not_found"
+    
+    _, book_data = found_book
+    if book_data["year"] is None:
+        return "already_unknown"
+    
+    book_data["year"] = None
+    return "removed"
+
+
+
+
 """
 rename_book() DONE
 change_author() DONE
-change_year()
+change_year() DONE
 remove_year()
 mark_as_read()
 mark_as_unread()
