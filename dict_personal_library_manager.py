@@ -100,7 +100,7 @@ def mark_as_unread(library: dict, title_to_change: str) -> str:
         return "already_unread"
     
     book_data["read"] = False
-    return "marked_as_unread"
+    return "success"
 
 
 # test mark_as_read()
@@ -221,7 +221,7 @@ def rename_book(
             library[new_book_name] = book_data
             del library[book_name]
 
-            return "renamed"
+            return "succsess"
         
         else:
             return "already_exists"
@@ -245,7 +245,7 @@ def change_author(
         return "not_found"
     
     if not new_author:
-        return "empty_author"
+        return "empty"
 
     _, book_data = found_book
     book_data["author"] = new_author
@@ -282,10 +282,10 @@ def remove_year(library: dict, book_to_change: str) -> str:
     
     _, book_data = found_book
     if book_data["year"] is None:
-        return "already_unknown"
+        return "empty"
     
     book_data["year"] = None
-    return "removed"
+    return "success"
 
 
 # menu
