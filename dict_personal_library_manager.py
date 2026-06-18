@@ -254,13 +254,29 @@ def change_author(
    
 
 # test change_author()
-change_author(library, "1984", "")
-print(library)
+"""change_author(library, "1984", "")
+print(library)"""
+
+
+def change_year(
+        library: dict,
+        book_to_change: str,
+        new_year: int
+) -> bool:
+    found_book = find_book(library, book_to_change)
+
+    if found_book is None:
+        return False
+    
+    _, book_data = found_book
+    book_data["year"] = new_year
+
+    return True
 
 
 """
 rename_book() DONE
-change_author()
+change_author() DONE
 change_year()
 remove_year()
 mark_as_read()
