@@ -33,19 +33,19 @@ def add_book(
         title_to_add: str,
         author: str | None = None,
         year: int | None = None
-        ) -> bool:
+        ) -> str:
     
     found_book = find_book(library, title_to_add)
 
     if found_book:
-        return False
+        return "already_exists"
     
     library[title_to_add] = {
         "author": author,
         "year": year,
         "read": False
     }
-    return True
+    return "success"
 
 
 # test add_book()
@@ -325,9 +325,9 @@ while True:
 
         year = int(year_input) if year_input else None
 
-        success = add_book(library, title, author, year)
+        result = add_book(library, title, author, year)
 
-        if success:
+        if result == "success":
             print(f"Book {title} was successfully added to the library.")
         
         else:
