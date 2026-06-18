@@ -430,9 +430,22 @@ while True:
 
 
     elif menu_choice == "6":
-        print()
-        print("Edit book")
+        while True:
+            print("""
+Edit book menu:
+1 - Rename book
+2 - Change author
+3 - Change year
+4 - Remove year
+5 - Mark as read
+6 - Mark as unread
+7 - Back
+""")
+            edit_choice = input("Choose: ")
 
+            
+            if edit_choice == "7":
+                break
 
     elif menu_choice == "7":
         print("Good bye!")
