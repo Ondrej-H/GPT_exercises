@@ -81,7 +81,7 @@ def mark_as_read(library: dict, title_to_change: str) -> str:
         return "already_read"
     
     book_data["read"] = True
-    return "marked_as_read"
+    return "success"
 
 
 # test mark_as_read()
