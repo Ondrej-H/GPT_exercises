@@ -230,8 +230,42 @@ def rename_book(
 
 
 # test rename_book()
-rename_book(library, "1984", "Poo")
+"""rename_book(library, "1984", "Dune")
+print(library)"""
+
+
+def change_author(
+        library: dict,
+        book_to_change: str,
+        new_author: str
+) -> bool:
+    found_book = find_book(library, book_to_change)
+
+    if found_book is None:
+        return False
+    
+    if not new_author:
+        return False
+
+    _, book_data = found_book
+    book_data["author"] = new_author
+
+    return True
+   
+
+# test change_author()
+change_author(library, "1984", "")
 print(library)
+
+
+"""
+rename_book() DONE
+change_author()
+change_year()
+remove_year()
+mark_as_read()
+mark_as_unread()
+"""
 
 
 # menu
