@@ -294,9 +294,9 @@ def remove_year(library: dict, book_to_change: str) -> str:
 1 - Add book
 2 - Find book
 3 - Remove book
-4 - Mark as read
-5 - Show all books
-6 - Show statistics
+4 - Show all books
+5 - Show statistics
+6 - Edit book
 7 - Exit
 """
 
@@ -306,9 +306,9 @@ while True:
 1 - Add book
 2 - Find book
 3 - Remove book
-4 - Mark as read
-5 - Show all books
-6 - Show statistics
+4 - Show all books
+5 - Show statistics
+6 - Edit book
 7 - Exit
 """)
 
@@ -387,30 +387,10 @@ while True:
                 print("Such book is not in library. No book was removed.")
 
         else:
-            print("Removing book cancelled.")
+            print("Removing book cancelled.")         
 
 
     elif menu_choice == "4":
-        print()
-        print("Mark as read")
-
-        book_to_mark_as_read = input("Which book was read? > ")
-        result = mark_as_read(library, book_to_mark_as_read)
-        
-        if result == "not_found":
-            print("No such book in the library.")        
-        
-        else:
-            book_name, _ = find_book(library, book_to_mark_as_read)
-
-            if result == "already_read":            
-                print(f"Book {book_name} is already marked as read!")
-
-            else:
-                print(f"Book {book_name} was marked as read.")         
-
-
-    elif menu_choice == "5":
         print()
         print("Show all books")
 
@@ -424,7 +404,7 @@ while True:
             print("Library is empty!")
 
 
-    elif menu_choice == "6":
+    elif menu_choice == "5":
         print()
         print("Statistics")
         print(f"Total books: {len(library)}")
@@ -448,14 +428,58 @@ while True:
             print("However, these books were not included because their year is unknown:")
             print(", ".join(books_without_year))
 
+
+    elif menu_choice == "6":
+        print()
+        print("Edit book")
+
+
     elif menu_choice == "7":
         print("Good bye!")
         break
 
-'''
+"""
+new menu:
+1 - Add book
+2 - Find book
+3 - Remove book
+4 - Show all books
+5 - Show statistics
+6 - Edit book
+7 - Exit
+"""
 
-'''
+"""
+Edit book menu:
+1 - Rename book
+2 - Change author
+3 - Change year
+4 - Remove year
+5 - Mark as read
+6 - Mark as unread
+7 - Back
+"""
 
+"""
+elif menu_choice == :
+        print()
+        print("Mark as read")
+
+        book_to_mark_as_read = input("Which book was read? > ")
+        result = mark_as_read(library, book_to_mark_as_read)
+        
+        if result == "not_found":
+            print("No such book in the library.")        
+        
+        else:
+            book_name, _ = find_book(library, book_to_mark_as_read)
+
+            if result == "already_read":            
+                print(f"Book {book_name} is already marked as read!")
+
+            else:
+                print(f"Book {book_name} was marked as read.")
+"""
 
 """dict_personal_library_manager: """
 
