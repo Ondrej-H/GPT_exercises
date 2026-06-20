@@ -215,18 +215,17 @@ def rename_book(
         ) -> str:
     found_book = find_book(library, book_to_edit)
 
-    if found_book is not None:
-        if new_book_name not in library:
-            book_name, book_data = found_book
-            library[new_book_name] = book_data
-            del library[book_name]
+    if found_book is None:
+        return "not_found"
+    
+    if find_book(library, new_book_name):
+        return "already_exists" 
+    
+    book_name, book_data = found_book
+    library[new_book_name] = book_data
+    del library[book_name]
 
-            return "success"
-        
-        else:
-            return "already_exists"
-        
-    return "not_found"
+    return "success"     
 
 
 # test rename_book()
