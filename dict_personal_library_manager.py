@@ -529,6 +529,25 @@ Edit book menu:
                     print(f"Book {book_to_edit} is not in the library. Try another name.")
 
 
+            elif edit_choice == "5":
+                print()
+                print("Mark as read")
+                book_to_edit = input("Book to edit: ")
+                found_book = find_book(library, book_to_edit)
+
+                if found_book:
+                    book_name, _ = found_book
+                    result = mark_as_read(library, book_to_edit)
+
+                    if result == "success":
+                        print(f"Book {book_name} was successfully marked as read.")
+
+                    elif result == "already_read":
+                        print(f"Book {book_name} is already marked as read!")
+
+                else:
+                    print(f"Book {book_to_edit} is not in the library. Try another name.")
+
 
 
             
