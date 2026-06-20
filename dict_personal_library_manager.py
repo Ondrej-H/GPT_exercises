@@ -464,6 +464,7 @@ Edit book menu:
                     else:
                         print(f"Book {book_to_rename} is not in the library.")
             
+
             elif edit_choice == "2":
                 print()
                 print("Change author")
@@ -483,6 +484,31 @@ Edit book menu:
 
                 else:          
                     print(f"Book {book_to_edit} is not in the library! Try another name.")
+
+
+            elif edit_choice == "3":
+                print()
+                print("Change year")
+                book_to_edit = input("Book to edit: ")
+                found_book = find_book(library, book_to_edit)
+
+                if found_book:
+                    new_year = input("New year: ")
+                    
+                    if new_year.isdigit():
+                        new_year = int(new_year)
+                        result = change_year(library, book_to_edit, new_year)
+
+                        if result == "success":
+                            book_name, _ = found_book
+                            print(f"Year of book {book_name} was successfully changed to {new_year}.")
+
+                    else:
+                        print("Invalid year. Operation was aborted.")
+
+                else:
+                    print(f"Book {book_to_edit} is not in the library! Try another name.")
+
 
             
             elif edit_choice == "7":
