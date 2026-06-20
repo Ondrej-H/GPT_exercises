@@ -286,6 +286,18 @@ def remove_year(library: dict, book_to_edit: str) -> str:
     book_data["year"] = None
     return "success"
 
+def show_library(library: dict) -> None:
+    for book_name, book_data in library.items():    
+        print(f"""
+Title: {book_name}
+Author: {book_data["author"]}
+Year: {book_data["year"]}
+Read: {book_data["read"]}
+""")
+
+
+# test show_library
+show_library(library)
 
 # menu
 """
@@ -453,7 +465,8 @@ Edit book menu:
                     result = rename_book(library, book_to_edit, new_name)
 
                     if result == "success":
-                        print(f"Book {book_to_edit} was successfully renamed to {new_name}.")
+                        book_name, _ = found_book
+                        print(f"Book {book_name} was successfully renamed to {new_name}.")
                     elif result == "already_exists":
                         print(f"A book named {new_name} already exists in the library! Try another name.")
                 else:
