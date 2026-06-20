@@ -447,16 +447,22 @@ Edit book menu:
                 print()
                 print("Rename book")
                 book_to_rename = input("Book to rename: ")
-                new_name = input("New name: ")
+                found_book = find_book(library, book_to_rename)
+                
+                if found_book:
+                    new_name = input("New name: ")
 
-                result = rename_book(library, book_to_rename, new_name)
+                    result = rename_book(library, book_to_rename, new_name)
 
-                if result == "success":
-                    print(f"Book {book_to_rename} was successfully renamed to {new_name}.")
-                elif result == "already_exists":
-                    print(f"A book named {new_name} already exists in the library! Try another name.")
+                    if result == "success":
+                        print(f"Book {book_to_rename} was successfully renamed to {new_name}.")
+                    elif result == "already_exists":
+                        print(f"A book named {new_name} already exists in the library! Try another name.")
                 else:
-                    print(f"Book {book_to_rename} is not in the library.")
+                    if book_to_rename == "":
+                        print("Invalid name, renaming aborted.")
+                    else:
+                        print(f"Book {book_to_rename} is not in the library.")
 
             
             elif edit_choice == "7":
