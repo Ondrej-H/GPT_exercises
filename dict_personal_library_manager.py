@@ -510,6 +510,27 @@ Edit book menu:
                     print(f"Book {book_to_edit} is not in the library! Try another name.")
 
 
+            elif edit_choice == "4":
+                print()
+                print("Remove year")
+                book_to_edit = input("Book to edit: ")
+                found_book = find_book(library, book_to_edit)
+
+                if found_book:
+                    book_name, _ = found_book
+                    result = remove_year(library, book_to_edit)
+                    if result == "success":
+                        print(f"Year of book {book_name} was successfully changed to unknown.")
+                    
+                    elif result == "empty":
+                        print(f"Year of book {book_name} is already unknown.")
+
+                else:
+                    print(f"Book {book_to_edit} is not in the library. Try another name.")
+
+
+
+
             
             elif edit_choice == "7":
                 break
