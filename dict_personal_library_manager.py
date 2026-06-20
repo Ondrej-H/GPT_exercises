@@ -460,9 +460,29 @@ Edit book menu:
                         print(f"A book named {new_name} already exists in the library! Try another name.")
                 else:
                     if book_to_rename == "":
-                        print("Invalid name, renaming aborted.")
+                        print("Invalid name. Operation was aborted.")
                     else:
                         print(f"Book {book_to_rename} is not in the library.")
+            
+            elif edit_choice == "2":
+                print()
+                print("Change author")
+                book_to_edit = input("Book to edit: ")
+                found_book = find_book(library, book_to_edit)
+                
+                if found_book:
+                    new_author = input("New author: ")
+                    result = change_author(library, book_to_edit, new_author)
+                    
+                    if result == "success":
+                        book_name, _ = found_book
+                        print(f"Author of the book {book_name} was successfully changed to {new_author}.")
+                    
+                    elif result == "empty":
+                        print("Invalid author. Operation was aborted.")
+
+                else:          
+                    print(f"Book {book_to_edit} is not in the library! Try another name.")
 
             
             elif edit_choice == "7":
