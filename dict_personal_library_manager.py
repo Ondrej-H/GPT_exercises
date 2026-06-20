@@ -63,16 +63,15 @@ def remove_book(library: dict, title_to_remove: str) -> str:
     return "success"
 
 
-
 # test remove_book
 """remove_book(library, "1984")
 print(library)"""
 
 
-def mark_as_read(library: dict, title_to_change: str) -> str:
-    found_book = find_book(library, title_to_change)
+def mark_as_read(library: dict, book_to_edit: str) -> str:
+    found_book = find_book(library, book_to_edit)
     
-    if not found_book:
+    if found_book is None:
         return "not_found"
 
     _, book_data = found_book
@@ -89,10 +88,10 @@ def mark_as_read(library: dict, title_to_change: str) -> str:
 print(library)"""
 
 
-def mark_as_unread(library: dict, title_to_change: str) -> str:
-    found_book = find_book(library, title_to_change)
+def mark_as_unread(library: dict, book_to_edit: str) -> str:
+    found_book = find_book(library, book_to_edit)
     
-    if not found_book:
+    if found_book is None:
         return "not_found"
 
     _, book_data = found_book
@@ -211,10 +210,10 @@ def get_newest_book(library: dict) -> str | None:
 
 def rename_book(
         library: dict,
-        book_to_rename: str,
+        book_to_edit: str,
         new_book_name: str
         ) -> str:
-    found_book = find_book(library, book_to_rename)
+    found_book = find_book(library, book_to_edit)
 
     if found_book is not None:
         if new_book_name not in library:
@@ -237,10 +236,10 @@ print(library)"""
 
 def change_author(
         library: dict,
-        book_to_change: str,
+        book_to_edit: str,
         new_author: str
 ) -> str:
-    found_book = find_book(library, book_to_change)
+    found_book = find_book(library, book_to_edit)
 
     if found_book is None:
         return "not_found"
@@ -261,10 +260,10 @@ print(library)"""
 
 def change_year(
         library: dict,
-        book_to_change: str,
+        book_to_edit: str,
         new_year: int
 ) -> str:
-    found_book = find_book(library, book_to_change)
+    found_book = find_book(library, book_to_edit)
 
     if found_book is None:
         return "not_found"
@@ -275,8 +274,8 @@ def change_year(
     return "success"
 
 
-def remove_year(library: dict, book_to_change: str) -> str:
-    found_book = find_book(library, book_to_change)
+def remove_year(library: dict, book_to_edit: str) -> str:
+    found_book = find_book(library, book_to_edit)
 
     if found_book is None:
         return "not_found"
@@ -446,23 +445,23 @@ Edit book menu:
             if edit_choice == "1":
                 print()
                 print("Rename book")
-                book_to_rename = input("Book to rename: ")
-                found_book = find_book(library, book_to_rename)
+                book_to_edit = input("Book to rename: ")
+                found_book = find_book(library, book_to_edit)
                 
                 if found_book:
                     new_name = input("New name: ")
 
-                    result = rename_book(library, book_to_rename, new_name)
+                    result = rename_book(library, book_to_edit, new_name)
 
                     if result == "success":
-                        print(f"Book {book_to_rename} was successfully renamed to {new_name}.")
+                        print(f"Book {book_to_edit} was successfully renamed to {new_name}.")
                     elif result == "already_exists":
                         print(f"A book named {new_name} already exists in the library! Try another name.")
                 else:
-                    if book_to_rename == "":
+                    if book_to_edit == "":
                         print("Invalid name. Operation was aborted.")
                     else:
-                        print(f"Book {book_to_rename} is not in the library.")
+                        print(f"Book {book_to_edit} is not in the library.")
             
 
             elif edit_choice == "2":
@@ -573,53 +572,10 @@ Edit book menu:
                 break
 
 
-
     elif menu_choice == "7":
         print("Good bye!")
         break
 
-"""
-new menu:
-1 - Add book
-2 - Find book
-3 - Remove book
-4 - Show all books
-5 - Show statistics
-6 - Edit book
-7 - Exit
-"""
-
-"""
-Edit book menu:
-1 - Rename book
-2 - Change author
-3 - Change year
-4 - Remove year
-5 - Mark as read
-6 - Mark as unread
-7 - Back
-"""
-
-"""
-elif menu_choice == :
-        print()
-        print("Mark as read")
-
-        book_to_mark_as_read = input("Which book was read? > ")
-        result = mark_as_read(library, book_to_mark_as_read)
-        
-        if result == "not_found":
-            print("No such book in the library.")        
-        
-        else:
-            book_name, _ = find_book(library, book_to_mark_as_read)
-
-            if result == "already_read":            
-                print(f"Book {book_name} is already marked as read!")
-
-            else:
-                print(f"Book {book_name} was marked as read.")
-"""
 
 """dict_personal_library_manager: """
 
