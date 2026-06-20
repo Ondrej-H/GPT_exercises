@@ -291,35 +291,39 @@ def show_library(library: dict) -> None:
         print(f"""
 Title: {book_name}
 Author: {book_data["author"]}
-Year: {book_data["year"]}
-Read: {book_data["read"]}
-""")
+Year: {book_data["year"]}""")
+        if book_data["read"]:
+            print("Read: Yes, already read.")
+        else:
+            print("Read: No, not yet read.")
 
 
 # test show_library
-show_library(library)
+"""show_library(library)"""
 
 # menu
 """
 1 - Add book
-2 - Find book
-3 - Remove book
-4 - Show all books
-5 - Show statistics
-6 - Edit book
-7 - Exit
+2 - Show library
+3 - Find book
+4 - Remove book
+5 - Show all books
+6 - Show statistics
+7 - Edit book
+8 - Exit
 """
 
 while True:
 
     print("""
 1 - Add book
-2 - Find book
-3 - Remove book
-4 - Show all books
-5 - Show statistics
-6 - Edit book
-7 - Exit
+2 - Show library
+3 - Find book
+4 - Remove book
+5 - Show all books
+6 - Show statistics
+7 - Edit book
+8 - Exit
 """)
 
     menu_choice = input("Choose: ")
@@ -344,8 +348,12 @@ while True:
         else:
             print(f"Book {title} is already in the library!")
 
-
+    
     elif menu_choice == "2":
+        show_library(library)
+
+
+    elif menu_choice == "3":
         print()
         print("Find book")
 
@@ -379,7 +387,7 @@ while True:
             print(f"Book {book_to_find} was not found in library.")
 
 
-    elif menu_choice == "3":
+    elif menu_choice == "4":
         print()
         print("Remove book")
         book_to_remove = input("Book to remove: ")
@@ -400,7 +408,7 @@ while True:
             print("Removing book cancelled.")         
 
 
-    elif menu_choice == "4":
+    elif menu_choice == "5":
         print()
         print("Show all books")
 
@@ -414,7 +422,7 @@ while True:
             print("Library is empty!")
 
 
-    elif menu_choice == "5":
+    elif menu_choice == "6":
         print()
         print("Statistics")
         print(f"Total books: {len(library)}")
@@ -439,7 +447,7 @@ while True:
             print(", ".join(books_without_year))
 
 
-    elif menu_choice == "6":
+    elif menu_choice == "7":
         while True:
             print("""
 Edit book menu:
@@ -584,7 +592,7 @@ Edit book menu:
                 break
 
 
-    elif menu_choice == "7":
+    elif menu_choice == "8":
         print("Good bye!")
         break
 
