@@ -20,6 +20,7 @@ party = {
     }
 }
 
+# Core functions (4 functions)
 
 def find_character(party: dict, character_to_find: str) -> tuple[str, dict] | None:
     for character in party:
@@ -31,4 +32,31 @@ def find_character(party: dict, character_to_find: str) -> tuple[str, dict] | No
     return None
 
 # test find_character
-print(find_character(party, "Merlin"))
+"""print(find_character(party, "Merlin"))"""
+
+
+def add_character(
+        party: dict,
+        name: str, 
+        class_: str,
+        level: int,
+        hp: int,
+        inventory: list[str] | None = None,
+        ) -> str:
+    
+    if inventory is None:
+        inventory = []
+
+    party[name] = {
+        "class": class_,
+        "level": level,
+        "hp": hp,
+        "inventory": inventory,
+        "alive": True
+    }
+
+    return "success"
+
+
+
+
