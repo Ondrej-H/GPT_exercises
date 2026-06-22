@@ -13,7 +13,7 @@ party = {
 
     "Merlin": {
         "class": "Wizard",
-        "level": 4,
+        "level": 12,
         "hp": 25,
         "inventory": ["Staff", "Scroll"],
         "alive": True
@@ -143,17 +143,15 @@ def count_dead_characters(party: dict) -> int:
 
 
 def get_highest_level_characters(party: dict) -> list[str]:
-    highest_level = 1
+    if not party:
+        return []
+
+    highest_level = max(character["level"] for character in party.values())
     highest_level_characters = []
     
     for character in party:
-        level = party[character]["level"]        
-        
-        if highest_level < level:
-            highest_level = level
-    
-    for character in party:
         level = party[character]["level"]
+        
         if level == highest_level:
             highest_level_characters.append(character)
 
@@ -161,5 +159,5 @@ def get_highest_level_characters(party: dict) -> list[str]:
     
 
 # test get_highest_level_characters()
-print(get_highest_level_characters(group))
+print(get_highest_level_characters(party))
 
