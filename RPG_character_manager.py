@@ -5,7 +5,7 @@
 party = {
     "Conan": {
         "class": "Barbarian",
-        "level": 5,
+        "level": 12,
         "hp": 48,
         "inventory": ["Axe", "Potion"],
         "alive": True
@@ -140,4 +140,26 @@ def count_dead_characters(party: dict) -> int:
             dead_characters += 1
 
     return dead_characters
+
+
+def get_highest_level_characters(party: dict) -> list[str]:
+    highest_level = 1
+    highest_level_characters = []
+    
+    for character in party:
+        level = party[character]["level"]        
+        
+        if highest_level < level:
+            highest_level = level
+    
+    for character in party:
+        level = party[character]["level"]
+        if level == highest_level:
+            highest_level_characters.append(character)
+
+    return highest_level_characters
+    
+
+# test get_highest_level_characters()
+print(get_highest_level_characters(group))
 
