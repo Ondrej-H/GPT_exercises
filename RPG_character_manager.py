@@ -32,6 +32,9 @@ party = {
     }
 }
 
+group = {}
+
+
 # Core functions (4 functions)
 
 def find_character(party: dict, character_to_find: str) -> tuple[str, dict] | None:
@@ -115,3 +118,16 @@ Alive: {character_data["alive"]}
 
 # test show_party()
 """show_party(party)"""
+
+
+def count_alive_characters(party: dict) -> int:
+    alive_characters = 0
+    for character in party:
+        if party[character]["alive"]:
+            alive_characters += 1
+
+    return alive_characters
+
+# test count_alive_characters()
+"""print(count_alive_characters(group))"""
+
