@@ -93,3 +93,25 @@ def list_all_characters(party: dict) -> list[str]:
     return list(party)
 
 
+def show_party(party: dict) -> None:
+    for character in party:
+        character_data = party[character]
+        
+        if not character_data["inventory"]:
+            inventory_contents = "Empty"
+        
+        else:
+            inventory_contents = ", ".join(character_data["inventory"])
+        
+        print(f"""
+{character}
+Class: {character_data["class"]}
+Level: {character_data["level"]}
+HP: {character_data["hp"]}
+Inventory: {inventory_contents}
+Alive: {character_data["alive"]}
+""")
+        
+
+# test show_party()
+"""show_party(party)"""
