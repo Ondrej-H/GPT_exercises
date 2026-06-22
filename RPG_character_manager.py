@@ -159,5 +159,20 @@ def get_highest_level_characters(party: dict) -> list[str]:
     
 
 # test get_highest_level_characters()
-print(get_highest_level_characters(party))
+"""print(get_highest_level_characters(party))"""
 
+
+def get_lowest_level_characters(party: dict) -> list[str]:
+    if not party:
+        return []
+
+    lowest_level = min(character["level"] for character in party.values())
+    lowest_level_characters = []
+    
+    for character in party:
+        level = party[character]["level"]
+        
+        if level == lowest_level:
+            lowest_level_characters.append(character)
+
+    return lowest_level_characters
