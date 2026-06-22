@@ -89,3 +89,7 @@ def remove_character(party: dict, character_to_remove: str) -> str:
     return "success"
     
 
+def list_all_characters(party: dict) -> list[str]:
+    return list(party)
+
+
