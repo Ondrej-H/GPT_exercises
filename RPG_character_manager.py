@@ -17,6 +17,18 @@ party = {
         "hp": 25,
         "inventory": ["Staff", "Scroll"],
         "alive": True
+    },
+
+    "Cheddar the Wise": {
+        "class": "Master of Cheese",
+        "level": 12,
+        "hp": 70,
+        "inventory": [
+            "Legendary Gouda",
+            "Cheese Wheel +2",
+            "Potion of Lactose Resistance"
+        ],
+        "alive": True
     }
 }
 
@@ -44,6 +56,9 @@ def add_character(
         inventory: list[str] | None = None,
         ) -> str:
     
+    if name in party:
+        return "already_exists"
+    
     if inventory is None:
         inventory = []
 
@@ -58,5 +73,8 @@ def add_character(
     return "success"
 
 
+# test add_character
+"""add_character(party, "Capitain Vegetable", "Brocoli Master", 8, 14)
+print(party)"""
 
 
