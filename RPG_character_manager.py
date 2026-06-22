@@ -128,6 +128,16 @@ def count_alive_characters(party: dict) -> int:
 
     return alive_characters
 
+
 # test count_alive_characters()
 """print(count_alive_characters(group))"""
+
+
+def count_dead_characters(party: dict) -> int:
+    dead_characters = 0
+    for character in party:
+        if not party[character]["alive"]:
+            dead_characters += 1
+
+    return dead_characters
 
