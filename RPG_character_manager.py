@@ -78,3 +78,14 @@ def add_character(
 print(party)"""
 
 
+def remove_character(party: dict, character_to_remove: str) -> str:
+    found_character = find_character(party, character_to_remove)
+
+    if found_character is None:
+        return "not_found"
+    
+    character_name, _ = found_character
+    del party[character_name]
+    return "success"
+    
+
