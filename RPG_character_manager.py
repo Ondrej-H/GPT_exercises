@@ -38,7 +38,7 @@ party = {
 group = {}
 
 
-# Core functions
+# Core functions - Character management
 
 def find_character(party: dict, character_to_find: str) -> tuple[str, dict] | None:
     for character in party:
@@ -269,6 +269,22 @@ def level_up_character(party: dict, character: str) -> str:
     _, character_data = found_character
 
     character_data["level"] += 1
+
+    return "success"
+
+
+def level_down_character(party: dict, character: str) -> str:
+    found_character = find_character(party, character)
+
+    if found_character is None:
+        return "not_in_party"
+    
+    _, character_data = found_character
+
+    if character_data["level"] == 1:
+        return "already_level_1"
+    
+    character_data["level"] -= 1
 
     return "success"
 
