@@ -7,6 +7,7 @@ party = {
         "class": "Barbarian",
         "level": 12,
         "hp": 48,
+        "max_hp": 48,
         "inventory": ["Axe", "Potion"],
         "alive": True
     },
@@ -15,6 +16,7 @@ party = {
         "class": "Wizard",
         "level": 12,
         "hp": 25,
+        "max_hp": 30,
         "inventory": ["Staff", "Scroll"],
         "alive": True
     },
@@ -23,6 +25,7 @@ party = {
         "class": "Master of Cheese",
         "level": 12,
         "hp": 70,
+        "max_hp": 99,
         "inventory": [
             "Legendary Gouda",
             "Cheese Wheel +2",
@@ -69,6 +72,7 @@ def add_character(
         "class": class_,
         "level": level,
         "hp": hp,
+        "max_hp": hp,
         "inventory": inventory,
         "alive": True
     }
@@ -85,7 +89,7 @@ def remove_character(party: dict, character_to_remove: str) -> str:
     found_character = find_character(party, character_to_remove)
 
     if found_character is None:
-        return "not_found"
+        return "not_in_party"
     
     character_name, _ = found_character
     del party[character_name]
@@ -178,10 +182,10 @@ def get_lowest_level_characters(party: dict) -> list[str]:
     return lowest_level_characters
 
 
-def damage_character(party: dict, character: str, damage: int):
+def damage_character(party: dict, character: str, damage: int) -> str:
     found_character = find_character(party, character)
 
-    if not found_character:
+    if found_character is None:
         return "not_in_party"
     
     _, character_data = found_character
@@ -198,3 +202,21 @@ def damage_character(party: dict, character: str, damage: int):
     return "success"
 
 
+def heal_character(party: dict, character: str, heal: int) -> str:
+    found_character = find_character(party, character)
+
+    if found_character is None:
+        return "not_in_party"
+    
+    _, character_data = found_character
+
+    if not character_data["alive"]:
+        return "already_dead"
+    
+    if character_data["hp"] + heal <= character_data["max_hp"]:
+        character_data["hp"] += heal
+
+    else:
+        character_data["hp"] = character_data["max_hp"]
+
+    return "success"
