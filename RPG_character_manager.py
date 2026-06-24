@@ -334,8 +334,8 @@ def add_item(party: dict, character: str, item: str) -> str:
     return "success"
 
 # test add_item()
-print(add_item(party, "conan", "great sword"))
-print(party)
+"""print(add_item(party, "conan", "great sword"))
+print(party)"""
 
 
 def remove_item(party: dict, character: str, item: str) -> str:
@@ -352,6 +352,25 @@ def remove_item(party: dict, character: str, item: str) -> str:
     character_data["inventory"].remove(item)
 
     return "success"
+
+
+def show_inventory(party: dict, character: str) -> str | None:
+    found_character = find_character(party, character)
+
+    if found_character is None:
+        return "not_in_party"
+    
+    character_name, character_data = found_character
+
+    if not character_data["inventory"]:
+        return "inventory_empty"
+
+    print(f"{character_name}'s inventory:")
+    for item in character_data["inventory"]:
+        print(item)
+
+# test show_inventory()
+"""show_inventory(party, "conan")"""
 
 
 
