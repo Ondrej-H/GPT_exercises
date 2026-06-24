@@ -240,3 +240,20 @@ def kill_character(party: dict, character: str) -> str:
     return "success"
 
 
+def revive_character(party: dict, character: str) -> str:
+    found_character = find_character(party, character)
+
+    if found_character is None:
+        return "not_in_party"
+    
+    _, character_data = found_character
+
+    if character_data["alive"]:
+        return "already_alive"
+    
+    character_data["hp"] = 1
+    character_data["alive"] = True
+
+    return "success"
+
+
