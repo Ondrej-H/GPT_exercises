@@ -38,7 +38,7 @@ party = {
 group = {}
 
 
-# Core functions (4 functions)
+# Core functions
 
 def find_character(party: dict, character_to_find: str) -> tuple[str, dict] | None:
     for character in party:
@@ -125,6 +125,7 @@ Alive: {character_data["alive"]}
 """show_party(party)"""
 
 
+# Statistics functions
 def count_alive_characters(party: dict) -> int:
     alive_characters = 0
     for character in party:
@@ -183,6 +184,7 @@ def get_lowest_level_characters(party: dict) -> list[str]:
     return lowest_level_characters
 
 
+# HP management functions
 def damage_character(party: dict, character: str, damage: int) -> str:
     found_character = find_character(party, character)
 
@@ -253,6 +255,20 @@ def revive_character(party: dict, character: str) -> str:
     
     character_data["hp"] = 1
     character_data["alive"] = True
+
+    return "success"
+
+
+# Level management functions
+def level_up_character(party: dict, character: str) -> str:
+    found_character = find_character(party, character)
+
+    if found_character is None:
+        return "not_in_party"
+    
+    _, character_data = found_character
+
+    character_data["level"] += 1
 
     return "success"
 
