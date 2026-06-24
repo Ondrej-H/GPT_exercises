@@ -373,4 +373,59 @@ def show_inventory(party: dict, character: str) -> str | None:
 """show_inventory(party, "conan")"""
 
 
+# Main menu
+"""
+Main Menu
+---------
+1 Add character
+2 Remove character
+3 Show party
+4 Statistics
+
+5 Damage character
+6 Heal character
+7 Kill character
+8 Revive character
+
+9 Level up character
+10 Level down character
+
+11 Add item
+12 Remove item
+13 Show inventory
+
+0 Exit
+"""
+
+while True:
+    print("""
+    Main Menu
+    ---------
+    1 Add character
+    2 Remove character
+    3 Show party
+    4 Statistics
+
+    5 Damage character
+    6 Heal character
+    7 Kill character
+    8 Revive character
+
+    9 Level up character
+    10 Level down character
+
+    11 Add item
+    12 Remove item
+    13 Show inventory
+
+    0 Exit
+    """)
+
+    menu_choice = input("Choose: ")
+
+    
+
+    if menu_choice == "0":
+        print("Good bye!")
+        break
 
