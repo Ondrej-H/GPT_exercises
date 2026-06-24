@@ -176,3 +176,25 @@ def get_lowest_level_characters(party: dict) -> list[str]:
             lowest_level_characters.append(character)
 
     return lowest_level_characters
+
+
+def damage_character(party: dict, character: str, damage: int):
+    found_character = find_character(party, character)
+
+    if not found_character:
+        return "not_in_party"
+    
+    _, character_data = found_character
+
+    if not character_data["alive"]:
+        return "already_dead"
+    
+    character_data["hp"] -= damage
+    
+    if character_data["hp"] <= 0:
+        character_data["hp"] = 0
+        character_data["alive"] = False
+
+    return "success"
+
+
