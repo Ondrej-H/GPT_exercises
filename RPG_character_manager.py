@@ -114,7 +114,8 @@ def show_party(party: dict) -> None:
 {character}
 Class: {character_data["class"]}
 Level: {character_data["level"]}
-HP: {character_data["hp"]}
+Current HP: {character_data["hp"]}
+Max HP: {character_data["max_hp"]}
 Inventory: {inventory_contents}
 Alive: {character_data["alive"]}
 """)
@@ -220,3 +221,22 @@ def heal_character(party: dict, character: str, heal: int) -> str:
         character_data["hp"] = character_data["max_hp"]
 
     return "success"
+
+
+def kill_character(party: dict, character: str) -> str:
+    found_character = find_character(party, character)
+
+    if found_character is None:
+        return "not_in_party"
+    
+    _, character_data = found_character
+
+    if not character_data["alive"]:
+        return "already_dead"
+    
+    character_data["hp"] = 0
+    character_data["alive"] = False
+    
+    return "success"
+
+
