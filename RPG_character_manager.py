@@ -39,6 +39,13 @@ group = {}
 
 
 # Core functions - Character management
+"""
+find_character()
+add_character()
+remove_character()
+list_all_characters()
+show_party()
+"""
 
 def find_character(party: dict, character_to_find: str) -> tuple[str, dict] | None:
     for character in party:
@@ -126,6 +133,13 @@ Alive: {character_data["alive"]}
 
 
 # Statistics functions
+"""
+count_alive_characters()
+count_dead_characters()
+get_highest_level_characters()
+get_lowest_level_characters()
+"""
+
 def count_alive_characters(party: dict) -> int:
     alive_characters = 0
     for character in party:
@@ -185,6 +199,13 @@ def get_lowest_level_characters(party: dict) -> list[str]:
 
 
 # HP management functions
+"""
+damage_character()
+heal_character()
+kill_character()
+revive_character()
+"""
+
 def damage_character(party: dict, character: str, damage: int) -> str:
     found_character = find_character(party, character)
 
@@ -260,6 +281,11 @@ def revive_character(party: dict, character: str) -> str:
 
 
 # Level management functions
+"""
+level_up_character()
+level_down_character()
+"""
+
 def level_up_character(party: dict, character: str) -> str:
     found_character = find_character(party, character)
 
@@ -287,5 +313,29 @@ def level_down_character(party: dict, character: str) -> str:
     character_data["level"] -= 1
 
     return "success"
+
+
+# Inventory management functions
+"""
+add_item()
+remove_item()
+show_inventory()
+"""
+
+def add_item(party: dict, character: str, item: str) -> str:
+    found_character = find_character(party, character)
+
+    if found_character is None:
+        return "not_in_party"
+    
+    _, character_data = found_character
+
+    character_data["inventory"].append(item)
+    return "success"
+
+# test add_item()
+print(add_item(party, "conan", "great sword"))
+print(party)
+
 
 
