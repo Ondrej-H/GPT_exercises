@@ -338,4 +338,20 @@ print(add_item(party, "conan", "great sword"))
 print(party)
 
 
+def remove_item(party: dict, character: str, item: str) -> str:
+    found_character = find_character(party, character)
+
+    if found_character is None:
+        return "not_in_party"
+    
+    _, character_data = found_character
+
+    if item not in character_data["inventory"]:
+        return "not_in_inventory"
+
+    character_data["inventory"].remove(item)
+
+    return "success"
+
+
 
