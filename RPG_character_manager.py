@@ -373,6 +373,33 @@ def show_inventory(party: dict, character: str) -> str | None:
 """show_inventory(party, "conan")"""
 
 
+def ask_positive_int(subject: str) -> int:
+    while True:
+        print()
+        user_input = input(f"{subject} (positive whole number, Enter = 1): ")
+        if user_input == "":
+            user_input = 1
+            print(f"{subject} was set to 1")
+            return user_input
+
+        if user_input.isdigit():
+            user_input = int(user_input)
+
+            if user_input >= 1:
+                print(f"{subject} was successfully set to {user_input}.")
+                return user_input
+
+            else:
+                print("Invalid input! Input must be positive whole number!")
+
+        else:
+            print("Invalid input! Input must be positive whole number!")
+
+
+# test ask_positive_int
+print(ask_positive_int("HP"))
+
+
 # Main menu
 """
 Main Menu
@@ -423,9 +450,46 @@ while True:
 
     menu_choice = input("Choose: ")
 
-    
+    if menu_choice == "1":
+        print()
+        print("Add character")
 
-    if menu_choice == "0":
+        name = input("Name: ")        
+        found_character = find_character(party, name)
+        while found_character:
+            print(f"Character called {name} is already in party! Try another name.")
+            name = input("Name: ")
+            found_character = find_character(party, name)
+
+        class_ = input("Class: ")
+
+        level = input("Level: ")
+        while not level.isdigit():
+            print("Ivalid level! Try again.")
+            level = input("Enter valid level (whole number) or press enter for level = 1: ")
+            
+            if level == "":
+                level = 1
+                break
+            
+            if level.isdigit():
+                level = int(level)
+
+        hp = input("HP: ")
+        while not hp.isdigit():
+            print("Ivalid HP! Try again.")
+            hp = input("Enter valid HP (whole number) or press enter for hp = 1: ")
+            
+            if hp == "":
+                hp = 1
+                break
+
+        inventory = input("Inventory (separate items with ', '): ")
+
+        result = add_character(party, name, class_, level, hp, inventory)
+
+
+    elif menu_choice == "0":
         print("Good bye!")
         break
 
