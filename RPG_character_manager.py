@@ -373,6 +373,7 @@ def show_inventory(party: dict, character: str) -> str | None:
 """show_inventory(party, "conan")"""
 
 
+# User input helper functions
 def ask_positive_int(subject: str) -> int:
     while True:
         print()
@@ -416,6 +417,17 @@ def ask_new_character_name(party: dict) -> str:
 
 # test ask_new_character_name()
 """print(ask_new_character_name(party))"""
+        
+
+def ask_inventory() -> list[str] | None:
+    inventory = input("Inventory (separate items with ', '): ")
+
+    if not inventory:
+            inventory = None
+    else:
+        inventory = inventory.split(sep=", ")
+
+    return inventory
 
 
 # Main menu
@@ -480,13 +492,10 @@ while True:
 
         hp = ask_positive_int("HP")
 
-        inventory = input("Inventory (separate items with ', '): ")
-        if not inventory:
-            inventory = None
-        else:
-            inventory = inventory.split(sep=", ")
-        
+        inventory = ask_inventory()
+                
         result = add_character(party, name, class_, level, hp, inventory)
+
         if result == "success":
             print(f"Character {name} was successfully added.")
 
