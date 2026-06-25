@@ -397,7 +397,25 @@ def ask_positive_int(subject: str) -> int:
 
 
 # test ask_positive_int
-print(ask_positive_int("HP"))
+"""print(ask_positive_int("HP"))"""
+
+
+def ask_new_character_name(party: dict) -> str:
+    while True:
+        name = input("Name: ")
+
+        found_character = find_character(party, name)
+
+        if found_character:
+            character_name, _ = found_character
+            print(f"Character called {character_name} is already in party! Try another name.")
+
+        else:
+            return name
+        
+
+# test ask_new_character_name()
+"""print(ask_new_character_name(party))"""
 
 
 # Main menu
@@ -454,39 +472,26 @@ while True:
         print()
         print("Add character")
 
-        name = input("Name: ")        
-        found_character = find_character(party, name)
-        while found_character:
-            print(f"Character called {name} is already in party! Try another name.")
-            name = input("Name: ")
-            found_character = find_character(party, name)
-
+        name = ask_new_character_name(party)
+        
         class_ = input("Class: ")
 
-        level = input("Level: ")
-        while not level.isdigit():
-            print("Ivalid level! Try again.")
-            level = input("Enter valid level (whole number) or press enter for level = 1: ")
-            
-            if level == "":
-                level = 1
-                break
-            
-            if level.isdigit():
-                level = int(level)
+        level = ask_positive_int("Level")        
 
-        hp = input("HP: ")
-        while not hp.isdigit():
-            print("Ivalid HP! Try again.")
-            hp = input("Enter valid HP (whole number) or press enter for hp = 1: ")
-            
-            if hp == "":
-                hp = 1
-                break
+        hp = ask_positive_int("HP")
 
         inventory = input("Inventory (separate items with ', '): ")
-
+        if not inventory:
+            inventory = None
+        else:
+            inventory = inventory.split(sep=", ")
+        
         result = add_character(party, name, class_, level, hp, inventory)
+        if result == "success":
+            print(f"Character {name} was successfully added.")
+
+        elif result == "already_exists":
+            print(f"Character called {name} is already in party.")
 
 
     elif menu_choice == "0":
