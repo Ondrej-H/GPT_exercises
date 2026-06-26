@@ -538,7 +538,59 @@ while True:
         show_statistics(party)
 
 
+    elif menu_choice == "5":
+        print()
+        print("Damage character")
 
+        character = input("Character to damage: ")
+        damage = ask_positive_int("Damage: ")
+        
+        result = damage_character(party, character, damage)
+
+        if result == "not_in_party":
+            print(f"Character {character} is not in the party!")
+
+        elif result == "already_dead":
+            print(f"Character {character} is already dead! No damage taken.")
+
+        elif result == "success":
+            print(f"Character {character} took {damage}.")
+
+
+    elif menu_choice == "6":
+        print()
+        print("Heal character")
+
+        character = input("Character to heal: ")
+        heal = ask_positive_int("Heal: ")
+
+        result = heal_character(party, character, heal)
+
+        if result == "not_in_party":
+            print(f"Character {character} is not in the party!")
+
+        elif result == "already_dead":
+            print(f"Character {character} is dead! Can be only revived, not healed.")
+
+        elif result == "success":
+            print(f"Character {character} is dead and cannot be healed. Revive the character first.")
+
+
+    elif menu_choice == "7":
+        print()
+        print("Kill character")
+
+        character = input("Character to kill: ")
+        result = kill_character(party, character)
+
+        if result == "not_in_party":
+            print(f"Character {character} is not in the party!")
+
+        elif result == "already_dead":
+            print(f"Character {character} is already dead!")
+
+        elif result == "success":
+            print(f"Character {character} was killed.")
 
 
     elif menu_choice == "0":
