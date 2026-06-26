@@ -138,6 +138,7 @@ count_alive_characters()
 count_dead_characters()
 get_highest_level_characters()
 get_lowest_level_characters()
+show_statistics()
 """
 
 def count_alive_characters(party: dict) -> int:
@@ -197,6 +198,20 @@ def get_lowest_level_characters(party: dict) -> list[str]:
 
     return lowest_level_characters
 
+
+def show_statistics(party: dict):
+    print()
+    print("Party Statistics")
+    print("----------------")
+    print(f"Alive characters: {count_alive_characters(party)}")
+    print(f"Dead characters: {count_dead_characters(party)}")
+    # TODO: Improve UX of character list output.
+    print(f"Highest level: {get_highest_level_characters(party)}")
+    print(f"Lowest level: {get_lowest_level_characters(party)}")
+
+
+# test show_statistics
+"""show_statistics(party)"""
 
 # HP management functions
 """
@@ -462,19 +477,15 @@ while True:
     2 Remove character
     3 Show party
     4 Statistics
-
     5 Damage character
     6 Heal character
     7 Kill character
     8 Revive character
-
     9 Level up character
     10 Level down character
-
     11 Add item
     12 Remove item
     13 Show inventory
-
     0 Exit
     """)
 
@@ -503,7 +514,7 @@ while True:
     elif menu_choice == "2":
         print()
         print("Remove character")
-        
+
         character_to_remove = input("Character to remove: ")
 
         result = remove_character(party, character_to_remove)
@@ -515,8 +526,24 @@ while True:
             print(f"Character {character_to_remove} was succesfully removed.")
         
 
+    elif menu_choice == "3":
+        print()
+        print("Show party")
+
+        show_party(party)
+        print("Scroll up ↑")
+
+    
+    elif menu_choice == "4":
+        show_statistics(party)
+
+
+
+
 
     elif menu_choice == "0":
         print("Good bye!")
         break
 
+
+    
