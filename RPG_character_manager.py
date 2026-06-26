@@ -485,22 +485,35 @@ while True:
         print("Add character")
 
         name = ask_new_character_name(party)
-        
         class_ = input("Class: ")
-
-        level = ask_positive_int("Level")        
-
+        level = ask_positive_int("Level")
         hp = ask_positive_int("HP")
-
         inventory = ask_inventory()
-                
+
         result = add_character(party, name, class_, level, hp, inventory)
 
         if result == "success":
             print(f"Character {name} was successfully added.")
 
+        # just defence code:
         elif result == "already_exists":
             print(f"Character called {name} is already in party.")
+
+
+    elif menu_choice == "2":
+        print()
+        print("Remove character")
+        
+        character_to_remove = input("Character to remove: ")
+
+        result = remove_character(party, character_to_remove)
+
+        if result == "not_in_party":
+            print(f"There is no character called {character_to_remove} in the party.")
+
+        else:
+            print(f"Character {character_to_remove} was succesfully removed.")
+        
 
 
     elif menu_choice == "0":
