@@ -23,7 +23,7 @@ party = {
 
     "Cheddar the Wise": {
         "class": "Master of Cheese",
-        "level": 8,
+        "level": 4,
         "hp": 70,
         "max_hp": 99,
         "inventory": [
@@ -92,7 +92,11 @@ def add_character(
 print(party)"""
 
 
-def remove_character(party: dict, character_to_remove: str) -> str:
+def remove_character(
+        party: dict,
+        character_to_remove: str
+        ) -> str | tuple[str, str]:
+    
     found_character = find_character(party, character_to_remove)
 
     if found_character is None:
@@ -100,7 +104,7 @@ def remove_character(party: dict, character_to_remove: str) -> str:
     
     character_name, _ = found_character
     del party[character_name]
-    return "success"
+    return "success", character_name
     
 
 def list_all_characters(party: dict) -> list[str]:
@@ -220,7 +224,7 @@ def show_statistics(party: dict):
         print(f"Highest level ({highest_level}): {', '.join(highest_level_characters)}")
         print(f"Lowest level ({lowest_level}): {', '.join(lowest_level_characters)}")
 
-
+ 
 # test show_statistics
 """show_statistics(party)"""
 
@@ -456,6 +460,12 @@ def ask_inventory() -> list[str] | None:
     return inventory
 
 
+def get_right_name(party: dict, character: str) -> str:
+    character_name, _ = find_character(party, character)
+    
+    return character_name
+
+
 # Main menu
 """
 Main Menu
@@ -534,7 +544,8 @@ while True:
             print(f"There is no character called {character_to_remove} in the party.")
 
         else:
-            print(f"Character {character_to_remove} was succesfully removed.")
+            _, character_name = result
+            print(f"Character {character_name} was succesfully removed.")
         
 
     elif menu_choice == "3":
@@ -566,7 +577,7 @@ while True:
             print(f"Character {character} is already dead! No damage taken.")
 
         elif result == "success":
-            print(f"Character {character} took {damage}.")
+            print(f"Character {character} took {damage} damage.")
 
 
     elif menu_choice == "6":
