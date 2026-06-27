@@ -593,6 +593,52 @@ while True:
             print(f"Character {character} was killed.")
 
 
+    elif menu_choice == "8":
+        print()
+        print("Revive character")
+
+        character = input("Character to revive: ")
+        result = revive_character(party, character)
+
+        if result == "not_in_party":
+            print(f"Character {character} is not in the party!")
+
+        elif result == "already_alive":
+            print(f"Character {character} is already alive!")
+
+        elif result == "success":
+            print(f"Character {character} was successfully revived.")
+
+    
+    elif menu_choice == "9":
+        print()
+        print("Level up character")
+
+        character = input("Character to level up: ")
+        result = level_up_character(party, character)
+
+        if result == "not_in_party":
+            print(f"Character {character} is not in the party!")
+
+        elif result == "success":
+            print(f"Character {character} was successfully leveled up.")
+
+
+    elif menu_choice == "10":
+        print()
+        print("Level down character")
+
+        character = input("Character to level down: ")
+        result = level_down_character(party, character)
+
+        if result == "not_in_party":
+            print(f"Character {character} is not in the party!")
+
+        elif result == "success":
+            print(f"Character {character} was successfully leveled down.")
+
+
+
     elif menu_choice == "0":
         print("Good bye!")
         break
