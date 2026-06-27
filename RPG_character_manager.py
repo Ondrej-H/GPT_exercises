@@ -380,6 +380,7 @@ def show_inventory(party: dict, character: str) -> str | None:
     if not character_data["inventory"]:
         return "inventory_empty"
 
+    print()
     print(f"{character_name}'s inventory:")
     for item in character_data["inventory"]:
         print(item)
@@ -535,6 +536,7 @@ while True:
 
     
     elif menu_choice == "4":
+        print()
         show_statistics(party)
 
 
@@ -570,10 +572,10 @@ while True:
             print(f"Character {character} is not in the party!")
 
         elif result == "already_dead":
-            print(f"Character {character} is dead! Can be only revived, not healed.")
+            print(f"Character {character} is dead and cannot be healed. Revive the character first.")
 
         elif result == "success":
-            print(f"Character {character} is dead and cannot be healed. Revive the character first.")
+            print(f"Character {character} was healed by {heal}.")
 
 
     elif menu_choice == "7":
@@ -637,6 +639,55 @@ while True:
         elif result == "success":
             print(f"Character {character} was successfully leveled down.")
 
+
+    elif menu_choice == "11":
+        print()
+        print("Add item")
+
+        character = input("Character: ")
+        item = input("New item: ")
+
+        result = add_item(party, character, item)
+
+        if result == "not_in_party":
+            print(f"Character {character} is not in the party!")
+
+        elif result == "success":
+            print(f"Item {item} was successfully added to {character}'s inventory.")
+
+
+    elif menu_choice == "12":
+        print()
+        print("Remove item")
+
+        character = input("Character: ")
+        item = input("Item to remove: ")
+
+        result = remove_item(party, character, item)
+
+        if result == "not_in_party":
+            print(f"Character {character} is not in the party!")
+
+        elif result == "not_in_inventory":
+            print(f"Item {item} is not in {character}'s inventory.")
+
+        elif result == "success":
+            print(f"Item {item} was successfully removed from {character}'s inventory.")
+
+
+    elif menu_choice == "13":
+        print()
+        print("Show inventory")
+
+        character = input("Character: ")
+        
+        result = show_inventory(party, character)
+
+        if result == "not_in_party":
+            print(f"Character {character} is not in the party!")
+
+        elif result == "inventory_empty":
+            print("Inventory is empty.")
 
 
     elif menu_choice == "0":
