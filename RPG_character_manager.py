@@ -5,7 +5,7 @@
 party = {
     "Conan": {
         "class": "Barbarian",
-        "level": 12,
+        "level": 4,
         "hp": 48,
         "max_hp": 48,
         "inventory": ["Axe", "Potion"],
@@ -23,7 +23,7 @@ party = {
 
     "Cheddar the Wise": {
         "class": "Master of Cheese",
-        "level": 12,
+        "level": 8,
         "hp": 70,
         "max_hp": 99,
         "inventory": [
@@ -205,9 +205,20 @@ def show_statistics(party: dict):
     print("----------------")
     print(f"Alive characters: {count_alive_characters(party)}")
     print(f"Dead characters: {count_dead_characters(party)}")
-    # TODO: Improve UX of character list output.
-    print(f"Highest level: {get_highest_level_characters(party)}")
-    print(f"Lowest level: {get_lowest_level_characters(party)}")
+
+    highest_level_characters = get_highest_level_characters(party)
+    highest_level = party[highest_level_characters[0]]["level"]
+
+    lowest_level_characters = get_lowest_level_characters(party)
+    lowest_level = party[lowest_level_characters[0]]["level"]
+
+    if highest_level == lowest_level:
+        print(f"All characters are level {highest_level}:")
+        print(', '.join(highest_level_characters))
+
+    else:
+        print(f"Highest level ({highest_level}): {', '.join(highest_level_characters)}")
+        print(f"Lowest level ({lowest_level}): {', '.join(lowest_level_characters)}")
 
 
 # test show_statistics
@@ -392,7 +403,6 @@ def show_inventory(party: dict, character: str) -> str | None:
 # User input helper functions
 def ask_positive_int(subject: str) -> int:
     while True:
-        print()
         user_input = input(f"{subject} (positive whole number, Enter = 1): ")
         if user_input == "":
             user_input = 1
