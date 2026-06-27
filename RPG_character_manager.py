@@ -128,8 +128,7 @@ Level: {character_data["level"]}
 Current HP: {character_data["hp"]}
 Max HP: {character_data["max_hp"]}
 Inventory: {inventory_contents}
-Alive: {character_data["alive"]}
-""")
+Alive: {character_data["alive"]}""")
         
 
 # test show_party()
@@ -204,9 +203,13 @@ def get_lowest_level_characters(party: dict) -> list[str]:
 
 
 def show_statistics(party: dict):
-    print()
     print("Party Statistics")
     print("----------------")
+
+    if not party:
+        print("Party is empty!")
+        return
+
     print(f"Alive characters: {count_alive_characters(party)}")
     print(f"Dead characters: {count_dead_characters(party)}")
 
@@ -460,10 +463,16 @@ def ask_inventory() -> list[str] | None:
     return inventory
 
 
-def get_right_name(party: dict, character: str) -> str:
-    character_name, _ = find_character(party, character)
+def get_right_name(party: dict, character: str) -> str | None:
+
+    found_character = find_character(party, character)
+
+    if found_character:
+        character_name, _ = found_character
     
-    return character_name
+        return character_name
+    
+    return None
 
 
 # Main menu
@@ -566,24 +575,28 @@ while True:
         print("Damage character")
 
         character = input("Character to damage: ")
-        damage = ask_positive_int("Damage: ")
+        found_character = find_character(party, character)
         
-        result = damage_character(party, character, damage)
-
-        if result == "not_in_party":
+        if found_character is None:
             print(f"Character {character} is not in the party!")
 
-        elif result == "already_dead":
-            print(f"Character {character} is already dead! No damage taken.")
+        else:
+            character_name, character_data = found_character
+            
+            if not character_data["alive"]:
+                print(f"Character {character_name} is already dead! No damage taken.")
 
-        elif result == "success":
-            print(f"Character {character} took {damage} damage.")
+            else:
+                damage = ask_positive_int("Damage")
+                damage_character(party, character_name, damage)
+                print(f"Character {character_name} took {damage} damage.")
 
 
     elif menu_choice == "6":
         print()
         print("Heal character")
 
+        # TODO impro UX - don't ask for heal if not in party
         character = input("Character to heal: ")
         heal = ask_positive_int("Heal: ")
 
@@ -657,6 +670,9 @@ while True:
         if result == "not_in_party":
             print(f"Character {character} is not in the party!")
 
+        elif result == "already_level_1":
+            print(f"Character {character} is already at level 1!")
+
         elif result == "success":
             print(f"Character {character} was successfully leveled down.")
 
@@ -715,5 +731,8 @@ while True:
         print("Good bye!")
         break
 
+
+    else:
+        print("Invalid choice!")
 
     
