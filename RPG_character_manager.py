@@ -379,6 +379,12 @@ def remove_item(party: dict, character: str, item: str) -> str:
     
     _, character_data = found_character
 
+    for inventory_item in character_data["inventory"]:
+        
+        if item.lower() == inventory_item.lower():
+            item = inventory_item
+            break
+
     if item not in character_data["inventory"]:
         return "not_in_inventory"
 
@@ -456,7 +462,7 @@ def ask_inventory() -> list[str] | None:
     inventory = input("Inventory (separate items with ', '): ")
 
     if not inventory:
-            inventory = None
+        inventory = None
     else:
         inventory = inventory.split(sep=", ")
 
@@ -554,7 +560,7 @@ while True:
 
         else:
             _, character_name = result
-            print(f"Character {character_name} was succesfully removed.")
+            print(f"Character {character_name} was successfully removed.")
         
 
     elif menu_choice == "3":
@@ -663,7 +669,7 @@ while True:
             print(f"Character {character} is not in the party!")
 
         elif result == "success":
-            print(f"Character {character} was successfully leveled up.")
+            print(f"Character {get_right_name(party, character)} was successfully leveled up.")
 
 
     elif menu_choice == "10":
@@ -677,10 +683,10 @@ while True:
             print(f"Character {character} is not in the party!")
 
         elif result == "already_level_1":
-            print(f"Character {character} is already at level 1!")
+            print(f"Character {get_right_name(party, character)} is already at level 1!")
 
         elif result == "success":
-            print(f"Character {character} was successfully leveled down.")
+            print(f"Character {get_right_name(party, character)} was successfully leveled down.")
 
 
     elif menu_choice == "11":
@@ -688,15 +694,18 @@ while True:
         print("Add item")
 
         character = input("Character: ")
-        item = input("New item: ")
+        found_character = find_character(party, character)
 
-        result = add_item(party, character, item)
-
-        if result == "not_in_party":
+        if found_character is None:
             print(f"Character {character} is not in the party!")
 
-        elif result == "success":
-            print(f"Item {item} was successfully added to {character}'s inventory.")
+        else:
+            character_name, character_data = found_character
+            item = input("New item: ")
+            add_item(party, character, item)
+
+            print(f"Item {item} was successfully added to {character_name}'s inventory.")
+            print(f"Current inventory: {', '.join(character_data["inventory"])}")
 
 
     elif menu_choice == "12":
@@ -704,18 +713,23 @@ while True:
         print("Remove item")
 
         character = input("Character: ")
-        item = input("Item to remove: ")
+        found_character = find_character(party, character)
 
-        result = remove_item(party, character, item)
-
-        if result == "not_in_party":
+        if found_character is None:
             print(f"Character {character} is not in the party!")
 
-        elif result == "not_in_inventory":
-            print(f"Item {item} is not in {character}'s inventory.")
+        else:
+            character_name, character_data = found_character
+            print(f"Current inventory: {', '.join(character_data['inventory'])}")
+            item = input("Item to remove: ")
 
-        elif result == "success":
-            print(f"Item {item} was successfully removed from {character}'s inventory.")
+            result = remove_item(party, character, item)
+            if result == "not_in_inventory":
+                print(f"Item {item} is not in {character_name}'s inventory.")
+
+            elif result == "success":
+                print(f"Item {item} was successfully removed from {character_name}'s inventory.")
+                print(f"Current inventory: {', '.join(character_data['inventory'])}")
 
 
     elif menu_choice == "13":
