@@ -481,6 +481,10 @@ def get_right_name(party: dict, character: str) -> str | None:
     return None
 
 
+def press_enter_to_continue() -> None:
+    input("\nPress Enter to cotinue ...")
+
+
 # Main menu
 """
 Main Menu
@@ -568,12 +572,13 @@ while True:
         print("Show party")
 
         show_party(party)
-        print("Scroll up ↑")
+        print("\nScroll up for the full party list. ↑")
 
     
     elif menu_choice == "4":
         print()
         show_statistics(party)
+
 
     elif menu_choice == "5":
         print()
@@ -754,5 +759,7 @@ while True:
 
     else:
         print("Invalid choice!")
+
+    press_enter_to_continue()
 
     
