@@ -272,11 +272,11 @@ def heal_character(party: dict, character: str, heal: int) -> str:
     
     if character_data["hp"] + heal <= character_data["max_hp"]:
         character_data["hp"] += heal
+        return "success"
 
     else:
         character_data["hp"] = character_data["max_hp"]
-
-    return "success"
+        return "full_hp"
 
 
 def kill_character(party: dict, character: str) -> str:
@@ -569,7 +569,6 @@ while True:
         print()
         show_statistics(party)
 
-
     elif menu_choice == "5":
         print()
         print("Damage character")
@@ -590,43 +589,50 @@ while True:
                 damage = ask_positive_int("Damage")
                 damage_character(party, character_name, damage)
                 print(f"Character {character_name} took {damage} damage.")
+                print(f"{character_name} left {character_data["hp"]}/{character_data["max_hp"]} HP.")
 
 
     elif menu_choice == "6":
         print()
         print("Heal character")
 
-        # TODO impro UX - don't ask for heal if not in party
         character = input("Character to heal: ")
-        heal = ask_positive_int("Heal: ")
-
-        result = heal_character(party, character, heal)
-
-        if result == "not_in_party":
+        found_character = find_character(party, character)
+        
+        if found_character is None:
             print(f"Character {character} is not in the party!")
 
-        elif result == "already_dead":
-            print(f"Character {character} is dead and cannot be healed. Revive the character first.")
+        else:
+            character_name, character_data = found_character
 
-        elif result == "success":
-            print(f"Character {character} was healed by {heal}.")
+            if not character_data["alive"]:
+                print(f"Character {character_name} is dead and cannot be healed. Revive the character first.")
+
+            elif character_data["hp"] == character_data["max_hp"]:
+                print(f"Character {character_name} is already at full HP ({character_data['hp']}/{character_data['max_hp']} HP)! ")
+
+            else:
+                heal = ask_positive_int("Heal")
+                heal_character(party, character_name, heal)
+                print(f"Character {character_name} was healed by {heal}.")
+                print(f"Current HP: {character_data['hp']}/{character_data['max_hp']}")
 
 
     elif menu_choice == "7":
         print()
         print("Kill character")
 
-        character = input("Character to kill: ")
-        result = kill_character(party, character)
-
+        character = input("Character to kill: ")        
+        result = kill_character(party, character)        
+        
         if result == "not_in_party":
             print(f"Character {character} is not in the party!")
 
         elif result == "already_dead":
-            print(f"Character {character} is already dead!")
+            print(f"Character {get_right_name(party, character)} is already dead!")
 
         elif result == "success":
-            print(f"Character {character} was killed.")
+            print(f"Character {get_right_name(party, character)} was killed.")
 
 
     elif menu_choice == "8":
@@ -640,10 +646,10 @@ while True:
             print(f"Character {character} is not in the party!")
 
         elif result == "already_alive":
-            print(f"Character {character} is already alive!")
+            print(f"Character {get_right_name(party, character)} is already alive!")
 
         elif result == "success":
-            print(f"Character {character} was successfully revived.")
+            print(f"Character {get_right_name(party, character)} was successfully revived.")
 
     
     elif menu_choice == "9":
