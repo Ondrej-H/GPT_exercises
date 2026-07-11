@@ -16,10 +16,20 @@ def ask_positive_integer(prompt: str) -> int:
             
 # test ask_positive_integer()
 '''print(ask_positive_integer("Positive integer: "))'''
-        
 
 
 # count_number_of_digits(num: int) -> int
+def count_number_of_digits(num: int) -> int:
+    number_of_digits = 0
+    
+    while num > 0:
+        num //= 10
+        number_of_digits += 1
+
+    return number_of_digits
+
+# test count_number_of_digits()
+'''print(count_number_of_digits(1234))'''
 
 # sum_digits(num: int) -> int
 
