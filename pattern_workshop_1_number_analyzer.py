@@ -31,9 +31,24 @@ def count_number_of_digits(num: int) -> int:
 # test count_number_of_digits()
 '''print(count_number_of_digits(1234))'''
 
+
 # sum_digits(num: int) -> int
+def sum_digits(num: int) -> int:
+    digit_sum = 0
+
+    while num > 0:
+        digit = num % 10
+        digit_sum += digit
+        num //= 10
+
+    return digit_sum
+
+# test sum_digits()
+print(sum_digits(1234))
+
 
 # reverse_number(num: int) -> int
+def
 
 # is_palindrome(num: int) -> bool
 
