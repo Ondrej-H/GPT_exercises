@@ -44,14 +44,27 @@ def sum_digits(num: int) -> int:
     return digit_sum
 
 # test sum_digits()
-print(sum_digits(1234))
+'''print(sum_digits(1234))'''
 
 
 # reverse_number(num: int) -> int
-def
+def reverse_number(num: int) -> int:
+    reversed_number = 0
+    while num > 0:
+        reversed_number = reversed_number * 10 + num % 10
+        num //= 10
+
+    return reversed_number
+
+# test reverse_number()
+'''print(reverse_number(1234))'''
+
 
 # is_palindrome(num: int) -> bool
-
+def is_palindrome(num: int) -> bool:
+    return num == reverse_number(num)
+   
+   
 # analyze_number(num: int) -> dict
 '''
 Jak zajistíš validaci?
