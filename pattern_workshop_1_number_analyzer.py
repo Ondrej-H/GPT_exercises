@@ -150,6 +150,19 @@ def find_smallest_analyzed_number(
 
 
 # calculate_average_value_of_analyzed_numbers(analyzed_numbers: list[dict]) -> float | None
+def calculate_average_value_of_analyzed_numbers(
+        analyzed_numbers: list[dict]
+        ) -> float | None:
+    
+    if not analyzed_numbers:
+        return None
+    
+    total_of_analyzed_numbers = sum(analysis["number"] for analysis in analyzed_numbers)
+
+    average = total_of_analyzed_numbers / len(analyzed_numbers)
+
+    return average
+
 
 # count_numbers_with_even_digit_count(analyzed_numbers: list[dict]) -> int
 
