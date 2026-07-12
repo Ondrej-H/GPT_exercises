@@ -103,7 +103,10 @@ analyzed_numbers = [
 
 # STATISTICS
 # count_number_of_analyzed_numbers(analyzed_numbers: list[dict]) -> int
-def count_number_of_analyzed_numbers(analyzed_numbers: list[dict]) -> int:
+def count_number_of_analyzed_numbers(
+        analyzed_numbers: list[dict]
+        ) -> int:
+    
     return len(analyzed_numbers)
 
 # test
@@ -111,6 +114,22 @@ def count_number_of_analyzed_numbers(analyzed_numbers: list[dict]) -> int:
 
 
 # find_largest_analyzed_number(analyzed_numbers: list[dict]) -> int | None
+def find_largest_analyzed_number(
+        analyzed_numbers: list[dict]
+        ) -> int | None:
+    
+    if not analyzed_numbers:
+        return None
+    
+    largest_analysis = max(
+        analyzed_numbers,
+        key=lambda analysis: analysis["number"]
+        )
+
+    max_number = largest_analysis["number"]
+
+    return max_number
+
 
 # find_smallest_analyzed_number(analyzed_numbers: list[dict]) -> int | None
 
