@@ -79,6 +79,19 @@ def analyze_number(num: int) -> dict:
 
 
 # show_history(analyzed_numbers: list[dict]) -> None
+def show_history(analyzed_numbers: list[dict]) -> None:
+    if not analyzed_numbers:
+        print("History is empty.")
+        return
+
+    for analysis in analyzed_numbers:
+        print("Number:", analysis["number"])
+        print("Number of digits:", analysis["digit_count"])
+        print("Sum of digits:", analysis["digit_sum"])
+        print("Reversed number:", analysis["reversed_number"])
+        print("Palindrome:", "Yes" if analysis["is_palindrome"] else "No")
+        print()
+    
 
 # count_number_of_analyzed_numbers(analyzed_numbers: list[dict]) -> int
 
@@ -118,7 +131,15 @@ Pokud u něčeho při psaní zjistím,
 
 
 
+# 
+'''
+analyzed_numbers: list[dict] = [] # před menu
 
+# pak při menu choice analyze number:
+num = ask_positive_integer("Positive integer: ")
+analysis = analyze_number(num)
+analyzed_numbers.append(analysis)
+'''
 
 
 # menu
