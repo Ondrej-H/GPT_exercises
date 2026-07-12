@@ -1,3 +1,4 @@
+# ANALYZE NUMBER 
 # ask_positive_integer(prompt: str) -> int
 def ask_positive_integer(prompt: str) -> int:
     while True:
@@ -77,7 +78,7 @@ def analyze_number(num: int) -> dict:
         "is_palindrome": is_palindrome(num)
     }
 
-
+# SHOW HISTORY
 # show_history(analyzed_numbers: list[dict]) -> None
 def show_history(analyzed_numbers: list[dict]) -> None:
     if not analyzed_numbers:
@@ -91,9 +92,23 @@ def show_history(analyzed_numbers: list[dict]) -> None:
         print("Reversed number:", analysis["reversed_number"])
         print("Palindrome:", "Yes" if analysis["is_palindrome"] else "No")
         print()
-    
 
+
+# just for testing, TODO: comment or delete
+analyzed_numbers = [
+    analyze_number(1234),
+    analyze_number(1221),
+    analyze_number(567)
+]
+
+# STATISTICS
 # count_number_of_analyzed_numbers(analyzed_numbers: list[dict]) -> int
+def count_number_of_analyzed_numbers(analyzed_numbers: list[dict]) -> int:
+    return len(analyzed_numbers)
+
+# test
+'''print(count_number_of_analyzed_numbers(analyzed_numbers))'''
+
 
 # find_largest_analyzed_number(analyzed_numbers: list[dict]) -> int | None
 
