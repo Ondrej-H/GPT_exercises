@@ -66,23 +66,17 @@ def is_palindrome(num: int) -> bool:
    
    
 # analyze_number(num: int) -> dict
-'''
-Jak zajistíš validaci?
+def analyze_number(num: int) -> dict:
+    # validace <- ask_positive_integer()
 
-Co když zadá:
-text?
-záporné číslo?
-nulu?
+    return {
+        "number": num,
+        "digit_count": count_number_of_digits(num),
+        "digit_sum": sum_digits(num),
+        "reversed_number": reverse_number(num),
+        "is_palindrome": is_palindrome(num)
+    }
 
-
-Example Output:
-Analyzing: 12321
-
-Number of digits: 5
-Sum of digits: 9
-Reversed number: 12321
-Palindrome: Yes
-'''
 
 # show_history(analyzed_numbers: list[dict]) -> None
 
@@ -141,4 +135,14 @@ Pokud u něčeho při psaní zjistím,
 hlavní program provede:
 analysis = analyze_number(number)
 analyzed_numbers.append(analysis) # přidá do historie
+'''
+
+'''
+analyze_number - Example Output:
+Analyzing: 12321
+
+Number of digits: 5
+Sum of digits: 9
+Reversed number: 12321
+Palindrome: Yes
 '''
