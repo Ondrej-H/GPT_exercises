@@ -126,12 +126,28 @@ def find_largest_analyzed_number(
         key=lambda analysis: analysis["number"]
         )
 
-    max_number = largest_analysis["number"]
+    largest_number = largest_analysis["number"]
 
-    return max_number
+    return largest_number
 
 
 # find_smallest_analyzed_number(analyzed_numbers: list[dict]) -> int | None
+def find_smallest_analyzed_number(
+        analyzed_numbers: list[dict]
+        ) -> int | None:
+    
+    if not analyzed_numbers:
+        return None
+    
+    smallest_analysis = min(
+        analyzed_numbers,
+        key=lambda analysis: analysis["number"]
+    )
+
+    smallest_number = smallest_analysis["number"]
+
+    return smallest_number
+
 
 # calculate_average_value_of_analyzed_numbers(analyzed_numbers: list[dict]) -> float | None
 
