@@ -78,30 +78,33 @@ def analyze_number(num: int) -> dict:
         "is_palindrome": is_palindrome(num)
     }
 
-# SHOW HISTORY
-# show_history(analyzed_numbers: list[dict]) -> None
+# SHOW ANALYSIS / HISTORY
+def show_analysis(analysis: dict) -> None:
+    print("Number:", analysis["number"])
+    print("Number of digits:", analysis["digit_count"])
+    print("Sum of digits:", analysis["digit_sum"])
+    print("Reversed number:", analysis["reversed_number"])
+    print("Palindrome:", "Yes" if analysis["is_palindrome"] else "No")
+
+
 def show_history(analyzed_numbers: list[dict]) -> None:
     print()
     print("History")
+    
     if not analyzed_numbers:
         print("History is empty.")
         return
 
-    for analysis in analyzed_numbers:        
-        print("Number:", analysis["number"])
-        print("Number of digits:", analysis["digit_count"])
-        print("Sum of digits:", analysis["digit_sum"])
-        print("Reversed number:", analysis["reversed_number"])
-        print("Palindrome:", "Yes" if analysis["is_palindrome"] else "No")
-        print()
-
+    for analysis in analyzed_numbers:
+        show_analysis(analysis)
+    
 
 # just for testing, TODO: comment or delete
-analyzed_numbers = [
+'''analyzed_numbers = [
     analyze_number(1234),
     analyze_number(1221),
     analyze_number(567)
-]
+]'''
 '''for analysis in analyzed_numbers:
     print(analysis)'''
 
@@ -236,7 +239,7 @@ def show_statistics(analyzed_numbers: list[dict]) -> None:
 '''show_statistics(analyzed_numbers)'''
 
 
-def ask_menu_choice():
+def ask_menu_choice() -> str:
     while True:
         menu_choice = input("Choose number: ")
         
@@ -267,21 +270,24 @@ analyzed_numbers: list[dict] = []
 
 print()
 print("=== Number Analyzer ===")
-print('''
+
+while True:
+    print('''
+Menu:
 1 - Analyze number
 2 - Show history
 3 - Statistics
 4 - Exit
 ''')
-
-while True:
     menu_choice = ask_menu_choice()
 
     if menu_choice == "1":
         num = ask_positive_integer("Number to analyze (positive integer): ")
         analysis = analyze_number(num)
         analyzed_numbers.append(analysis)
-        show_history([analysis])
+        print()
+        print("Analysis")
+        show_analysis(analysis)
         print("Number was successfully analyzed and added to history.")
 
 
