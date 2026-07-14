@@ -100,6 +100,9 @@ analyzed_numbers = [
     analyze_number(1221),
     analyze_number(567)
 ]
+'''for analysis in analyzed_numbers:
+    print(analysis)'''
+
 
 # STATISTICS
 # count_number_of_analyzed_numbers(analyzed_numbers: list[dict]) -> int
@@ -165,6 +168,28 @@ def calculate_average_value_of_analyzed_numbers(
 
 
 # count_numbers_with_even_digit_count(analyzed_numbers: list[dict]) -> int
+def count_numbers_with_even_digit_count(
+        analyzed_numbers: list[dict]
+        ) -> int:
+    
+    '''numbers_with_even_digit_count = 0
+    
+    for analysis in analyzed_numbers:
+        if analysis["digit_count"] % 2 == 0:
+            numbers_with_even_digit_count += 1'''
+
+    numbers_with_even_digit_count = sum(
+        1
+        for analysis in analyzed_numbers
+        if analysis["digit_count"] % 2 == 0
+    )
+
+    return numbers_with_even_digit_count
+
+# test
+'''print(count_numbers_with_even_digit_count(analyzed_numbers))'''
+
+
 
 # count_palindromes(analyzed_numbers: list[dict]) -> int
 
