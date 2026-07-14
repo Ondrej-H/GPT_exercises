@@ -81,11 +81,13 @@ def analyze_number(num: int) -> dict:
 # SHOW HISTORY
 # show_history(analyzed_numbers: list[dict]) -> None
 def show_history(analyzed_numbers: list[dict]) -> None:
+    print()
+    print("History")
     if not analyzed_numbers:
         print("History is empty.")
         return
 
-    for analysis in analyzed_numbers:
+    for analysis in analyzed_numbers:        
         print("Number:", analysis["number"])
         print("Number of digits:", analysis["digit_count"])
         print("Sum of digits:", analysis["digit_sum"])
@@ -172,12 +174,14 @@ def count_numbers_with_even_digit_count(
         analyzed_numbers: list[dict]
         ) -> int:
     
+    # for cyclce
     '''numbers_with_even_digit_count = 0
     
     for analysis in analyzed_numbers:
         if analysis["digit_count"] % 2 == 0:
             numbers_with_even_digit_count += 1'''
 
+    # generator expression
     numbers_with_even_digit_count = sum(
         1
         for analysis in analyzed_numbers
@@ -190,15 +194,52 @@ def count_numbers_with_even_digit_count(
 '''print(count_numbers_with_even_digit_count(analyzed_numbers))'''
 
 
-
 # count_palindromes(analyzed_numbers: list[dict]) -> int
+def count_palindromes(analyzed_numbers: list[dict]) -> int:
+    palindrome_count = sum(
+        1
+        for analysis in analyzed_numbers
+        if analysis["is_palindrome"]
+    )
+
+    return palindrome_count
+        
 
 # show_statistics(analyzed_numbers: list[dict]) -> None
+def show_statistics(analyzed_numbers: list[dict]) -> None:
+    print()
+    print("Statistics")
+    if not analyzed_numbers:
+        print("No numbers have been analyzed yet.")
+        return
+    
+    
+    print("Numbers analyzed:",
+          count_number_of_analyzed_numbers(analyzed_numbers))
+    
+    print("Largest number:",
+          find_largest_analyzed_number(analyzed_numbers))
+    
+    print("Smallest number:",
+          find_smallest_analyzed_number(analyzed_numbers))
+    
+    print("Average value:",
+          calculate_average_value_of_analyzed_numbers(analyzed_numbers))
+    
+    print("Numbers with even digit count:",
+          count_numbers_with_even_digit_count(analyzed_numbers))
+    
+    print("Palindrome count:",
+          count_palindromes(analyzed_numbers))
+
+# test
+'''show_statistics(analyzed_numbers)'''
+
+
 '''
 Example Output:
 
 Numbers analyzed: 7
-
 Largest number:
 Smallest number:
 
