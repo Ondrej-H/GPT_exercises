@@ -236,40 +236,24 @@ def show_statistics(analyzed_numbers: list[dict]) -> None:
 '''show_statistics(analyzed_numbers)'''
 
 
-'''
-Example Output:
+def ask_menu_choice():
+    while True:
+        menu_choice = input("Choose number: ")
+        
+        if not menu_choice.isdigit():
+            print("Invalid choice! Please choose number from 1 to 4.")
 
-Numbers analyzed: 7
-Largest number:
-Smallest number:
+        else:
+            if int(menu_choice) not in range(1, 5):
+                print("Invalid choice! Please choose number from 1 to 4.")
 
-Average value:
-
-Numbers with even digit count:
-Palindrome count:
-'''
-
-
-'''
-Pokud u něčeho při psaní zjistím,
-že funkci ani nepotřebuji, tak ji samozřejmě psát nebudu.
-'''
+            else:
+                return menu_choice
 
 
 
-
-
-
-# 
-'''
-analyzed_numbers: list[dict] = [] # před menu
-
-# pak při menu choice analyze number:
-num = ask_positive_integer("Positive integer: ")
-analysis = analyze_number(num)
-analyzed_numbers.append(analysis)
-'''
-
+# BASE PROGRAM
+analyzed_numbers: list[dict] = []
 
 # menu
 '''
@@ -281,11 +265,27 @@ analyzed_numbers.append(analysis)
 4 - Exit
 '''
 
-'''
-hlavní program provede:
-analysis = analyze_number(number)
-analyzed_numbers.append(analysis) # přidá do historie
-'''
+print()
+print("=== Number Analyzer ===")
+print('''
+1 - Analyze number
+2 - Show history
+3 - Statistics
+4 - Exit
+''')
+
+while True:
+    menu_choice = ask_menu_choice()
+
+    if menu_choice == "1":
+        num = ask_positive_integer("Number to analyze (positive integer): ")
+        analysis = analyze_number(num)
+        analyzed_numbers.append(analysis)
+        show_history([analysis])
+        print("Number was successfully analyzed and added to history.")
+
+
+
 
 '''
 analyze_number - Example Output:
