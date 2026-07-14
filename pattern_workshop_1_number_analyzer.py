@@ -4,13 +4,13 @@ def ask_positive_integer(prompt: str) -> int:
     while True:
         user_input = input(prompt)
         if not user_input.isdigit():
-            print("Invalid input: Input must be positive number!")
+            print("Invalid input: Input must be a positive number!")
 
         else:
             positive_integer = int(user_input)
             
             if positive_integer <= 0:
-                print("Invalid input: Input must be positive number!")
+                print("Invalid input: Input must be a positive number!")
 
             else:                
                 return positive_integer
@@ -97,6 +97,7 @@ def show_history(analyzed_numbers: list[dict]) -> None:
 
     for analysis in analyzed_numbers:
         show_analysis(analysis)
+        print()
     
 
 # just for testing, TODO: comment or delete
@@ -243,15 +244,11 @@ def ask_menu_choice() -> str:
     while True:
         menu_choice = input("Choose number: ")
         
-        if not menu_choice.isdigit():
+        if menu_choice not in ("1", "2", "3", "4"):
             print("Invalid choice! Please choose number from 1 to 4.")
 
         else:
-            if int(menu_choice) not in range(1, 5):
-                print("Invalid choice! Please choose number from 1 to 4.")
-
-            else:
-                return menu_choice
+            return menu_choice
 
 
 
@@ -290,15 +287,12 @@ Menu:
         show_analysis(analysis)
         print("Number was successfully analyzed and added to history.")
 
+    elif menu_choice == "2":
+        show_history(analyzed_numbers)
 
+    elif menu_choice == "3":
+        show_statistics(analyzed_numbers)
 
-
-'''
-analyze_number - Example Output:
-Analyzing: 12321
-
-Number of digits: 5
-Sum of digits: 9
-Reversed number: 12321
-Palindrome: Yes
-'''
+    elif menu_choice == "4":
+        print("Goodbye!")
+        break
